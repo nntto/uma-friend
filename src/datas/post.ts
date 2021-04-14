@@ -8,9 +8,10 @@ export type Post = {
   grandMom2: keishoUmamusume;
   supportId: string;
   support: Support;
-  stack: 0 | 1 | 2 | 3 | 4;
+  stack: 1 | 2 | 3 | 4;
   level: number;
   trainerId: number;
+  name: String;
 };
 
 export const posts: Post[] = [
@@ -55,6 +56,13 @@ export const posts: Post[] = [
           type: 'skill',
           desc: '',
           star: 2,
+        },
+        {
+          id: 'teioh_step',
+          name: '究極テイオーステップ',
+          type: 'uniqueSkill',
+          desc: '',
+          star: 3,
         },
       ],
     },
@@ -131,6 +139,7 @@ export const posts: Post[] = [
     stack: 4,
     level: 50,
     trainerId: 111111111,
+    name: 'トレーナーさん',
   },
   {
     id: 2,
@@ -228,5 +237,6 @@ export const posts: Post[] = [
     stack: 4,
     level: 50,
     trainerId: 111111111,
+    name: 'おはなさん',
   },
 ];

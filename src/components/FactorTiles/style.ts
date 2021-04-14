@@ -9,7 +9,7 @@ export default makeStyles({
     boxShadow: '1px 4px 0 rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
   },
   name: {
-    padding: '5px 5px 5px',
+    padding: '7px 5px 7px',
     margin: '5px 30px 0',
   },
   star: {
@@ -17,6 +17,9 @@ export default makeStyles({
     width: '100%',
     position: 'absolute',
     textAlign: 'center',
-    top: '25px',
+    bottom: '-20px',
+  },
+  box: {
+    margin: '10px 0 10px',
   },
 });

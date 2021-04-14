@@ -12,9 +12,14 @@ export const color = {
     G1: { background: '#E1E1E1', color: '#75421D' },
     skill: { background: '#E1E1E1', color: '#75421D' },
   },
+  color: { main: '#783A0A' },
+  background: { main: '#FAFAFA', dark: '#F2F2F2' },
+  primary: '#81CE09',
+  secondary: '#C5C5C5',
+  stack: '#36C9E0',
 };
 
-// type colors = typeof colors[keyof typeof colors];
+export type colorType = typeof color[keyof typeof color];
 
 export const typography = {
   letterSpacings: {
@@ -105,6 +110,7 @@ export const sizes = {
     lg: '1024px',
     xl: '1280px',
   },
+  supportImg: { width: 170, height: 225 },
 };
 
 // type sizes = typeof sizes[keyof typeof sizes];
