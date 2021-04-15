@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { sizes, color } from "style/theme";
+import { makeStyles } from "@material-ui/core/styles";
+import { posts } from "datas/post";
+import PostTiles from "components/PostTiles";
 
-function App() {
+const useStyles = makeStyles({
+  root: {
+    color: color.color.main,
+    fontWeight: "bolder",
+    fontSize: sizes[5],
+  },
+});
+
+const App: React.FC = () => {
+  const classes = useStyles();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <link
+        href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic"
+        rel="stylesheet"
+      />
+      <body className={classes.root}>
+        <PostTiles posts={posts} />
+      </body>
+    </>
   );
-}
+};
 
 export default App;
