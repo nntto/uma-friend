@@ -1,7 +1,7 @@
-import { Factor } from 'datas/factors';
-import Rating from '@material-ui/lab/Rating';
-import { color } from 'style/theme';
-import useStyles from './style';
+import { Factor } from "datas/factors";
+import Rating from "@material-ui/lab/Rating";
+import { color } from "style/theme";
+import useStyles from "./style";
 
 export default ({ factor }: { factor: Factor }) => {
   const classes = useStyles();

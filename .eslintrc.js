@@ -44,20 +44,12 @@ module.exports = {
         markers: ["/ <reference"],
       },
     ],
-    "@typescript-eslint/no-use-before-define": [
-      "error",
-      {
-        variables: false,
-        functions: false,
-      },
-    ],
+    "no-use-before-define": "off",
     "no-console": "off",
     "react/react-in-jsx-scope": "off",
-    "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": [
-      "error",
-      { allowAsStatement: true },
-    ],
+    "react/display-name": "off",
+    "react/jsx-key": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
   },
   settings: {
     "import/resolver": {

@@ -1,5 +1,5 @@
-import { Umamusume } from 'datas/umamusume';
-import { Factor } from 'datas/factors';
+import { Umamusume } from "datas/umamusume";
+import { Factor } from "datas/factors";
 
 export type keishoUmamusume = {
   umamusumeId: string;

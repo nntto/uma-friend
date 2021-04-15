@@ -6,15 +6,15 @@ export type Support = {
 
 export const supports: Support[] = [
   {
-    id: 'kitasan_brack',
-    name: 'キタサンブラック',
+    id: "kitasan_brack",
+    name: "キタサンブラック",
     imgUrl:
-      'https://img.game8.jp/5701687/8216c22081b5d75ce8b565ee5f7d0efd.png/original',
+      "https://img.game8.jp/5701687/8216c22081b5d75ce8b565ee5f7d0efd.png/original",
   },
   {
-    id: 'tokai_teioh',
-    name: 'トウカイテイオー',
+    id: "tokai_teioh",
+    name: "トウカイテイオー",
     imgUrl:
-      'https://img.game8.jp/5590345/4e41b0bb6d134b4006c87e01d4aba190.png/original',
+      "https://img.game8.jp/5590345/4e41b0bb6d134b4006c87e01d4aba190.png/original",
   },
 ];

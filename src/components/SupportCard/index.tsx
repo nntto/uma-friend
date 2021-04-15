@@ -1,8 +1,8 @@
-import Rating from '@material-ui/lab/Rating';
-import { Support } from 'datas/support';
-import { ImDiamonds } from 'react-icons/im';
-import { sizes } from 'style/theme';
-import useStyles from './style';
+import Rating from "@material-ui/lab/Rating";
+import { Support } from "datas/support";
+import { ImDiamonds } from "react-icons/im";
+import { sizes } from "style/theme";
+import useStyles from "./style";
 
 export default ({
   support,
@@ -11,7 +11,7 @@ export default ({
 }: {
   support: Support;
   stack: 1 | 2 | 3 | 4;
-  level: Number;
+  level: number;
 }) => {
   const classes = useStyles();
   return (

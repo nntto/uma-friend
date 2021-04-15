@@ -1,5 +1,5 @@
-import { Post } from 'datas/post';
-import PostTile from './PostTile';
+import { Post } from "datas/post";
+import PostTile from "./PostTile";
 
 export default ({ posts }: { posts: Post[] }) => {
   return (

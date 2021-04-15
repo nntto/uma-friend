@@ -1,7 +1,7 @@
-import { Grid } from '@material-ui/core';
-import { Factor } from 'datas/factors';
-import FactorTile from './FactorTile';
-import useStyles from './style';
+import { Grid } from "@material-ui/core";
+import { Factor } from "datas/factors";
+import FactorTile from "./FactorTile";
+import useStyles from "./style";
 
 export default ({ factors }: { factors: Factor[] }) => {
   const classes = useStyles();

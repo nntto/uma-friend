@@ -1,6 +1,6 @@
-import SupportCard from 'components/SupportCard';
-import { Support } from 'datas/support';
-import useStyles from './style';
+import SupportCard from "components/SupportCard";
+import { Support } from "datas/support";
+import useStyles from "./style";
 
 export default ({
   name,
@@ -9,11 +9,11 @@ export default ({
   stack,
   level,
 }: {
-  name: String;
-  trainerId: Number;
+  name: string;
+  trainerId: number;
   support: Support;
   stack: 1 | 2 | 3 | 4;
-  level: Number;
+  level: number;
 }) => {
   const classes = useStyles();
   return (

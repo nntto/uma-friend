@@ -1,0 +1,9 @@
+id,name,type,desc
+speed,スピード,status,スピードがアップする因子です
+stamina,スタミナ,status,スタミナがアップする因子です
+power,パワー,status,パワーがアップする因子です
+konjo,根性,status,根性がアップする因子です
+smart,賢さ,status,賢さがアップする因子です
+tankyori,短距離,appropriate,短距離適性がアップする因子です
+mile,マイル,appropriate,マイル適性がアップする因子です
+tyukyori,中距離,appropriate,中距離適性がアップする因子です
