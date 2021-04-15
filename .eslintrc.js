@@ -2,45 +2,69 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
-    'jest/globals': true,
   },
   extends: [
-    'plugin:react/recommended',
-    'airbnb',
-    'plugin:prettier/recommended',
+    "airbnb",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "prettier",
   ],
-  parser: '@typescript-eslint/parser',
+  parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
     ecmaVersion: 12,
-    sourceType: 'module',
+    sourceType: "module",
   },
-  plugins: ['react', '@typescript-eslint', 'jest'],
+  plugins: ["react", "@typescript-eslint"],
   rules: {
-    'react/jsx-filename-extension': ['error', { extensions: ['.jsx', 'tsx'] }],
-    'react/react-in-jsx-scope': 'off',
-    'no-use-before-define': 'off',
-    'react/jsx-props-no-spreading': 'off',
-    'import/extensions': [
-      'error',
-      'ignorePackages',
+    "import/extensions": [
+      "error",
       {
-        js: 'never',
-        jsx: 'never',
-        ts: 'never',
-        tsx: 'never',
+        js: "never",
+        jsx: "never",
+        ts: "never",
+        tsx: "never",
       },
     ],
-    'react/prop-types': 'off',
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        extensions: [".jsx", ".tsx"],
+      },
+    ],
+    "spaced-comment": [
+      "error",
+      "always",
+      {
+        markers: ["/ <reference"],
+      },
+    ],
+    "@typescript-eslint/no-use-before-define": [
+      "error",
+      {
+        variables: false,
+        functions: false,
+      },
+    ],
+    "no-console": "off",
+    "react/react-in-jsx-scope": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": [
+      "error",
+      { allowAsStatement: true },
+    ],
   },
   settings: {
-    'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx'],
-    },
-    'import/resolver': {
-      node: { extensions: ['.js', 'jsx', '.ts', '.tsx'], paths: ['src'] },
+    "import/resolver": {
+      node: {
+        paths: ["src"],
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
+      },
     },
   },
 };

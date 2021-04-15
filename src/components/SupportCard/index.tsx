@@ -16,7 +16,6 @@ export default ({
   const classes = useStyles();
   return (
     <>
-      <p>{level}</p>
       <div className={classes.parent}>
         <img
           src={support.imgUrl}

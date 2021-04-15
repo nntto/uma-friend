@@ -1,14 +1,13 @@
-import React from 'react';
-import './App.css';
-import { sizes, color } from 'style/theme';
-import { makeStyles } from '@material-ui/core/styles';
-import { posts } from 'datas/post';
-import PostTiles from 'components/PostTiles';
+import "./App.css";
+import { sizes, color } from "style/theme";
+import { makeStyles } from "@material-ui/core/styles";
+import { posts } from "datas/post";
+import PostTiles from "components/PostTiles";
 
 const useStyles = makeStyles({
   root: {
     color: color.color.main,
-    fontWeight: 'bolder',
+    fontWeight: "bolder",
     fontSize: sizes[5],
   },
 });

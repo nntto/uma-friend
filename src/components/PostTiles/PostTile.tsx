@@ -1,8 +1,8 @@
-import { Post } from 'datas/post';
-import KeishouTile from 'components/KeishouTile';
-import { Grid } from '@material-ui/core';
-import Profile from 'components/Profile';
-import makeStyles from './style';
+import { Post } from "datas/post";
+import KeishouTile from "components/KeishouTile";
+import { Grid } from "@material-ui/core";
+import Profile from "components/Profile";
+import makeStyles from "./style";
 
 export default ({ post }: { post: Post }) => {
   const classes = makeStyles();
@@ -20,7 +20,7 @@ export default ({ post }: { post: Post }) => {
       </div>
       <KeishouTile factors={post.mom.factors} umamusume={post.mom.umamusume} />
       <Grid container>
-        <Grid item xs={2} md={2} lg={2} style={{ textAlign: 'center' }}>
+        <Grid item xs={2} md={2} lg={2} style={{ textAlign: "center" }}>
           <span className={classes.keishomoto}>継承元</span>
         </Grid>
         <Grid item xs={10} md={10} lg={10}>
