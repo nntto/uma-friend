@@ -50,6 +50,7 @@ module.exports = {
     "react/display-name": "off",
     "react/jsx-key": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
+    "react/require-default-props": "off",
   },
   settings: {
     "import/resolver": {

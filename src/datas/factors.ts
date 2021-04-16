@@ -4,6 +4,7 @@ export type Factor = {
   type: "status" | "appropriate" | "uniqueSkill" | "G1" | "skill";
   desc: string;
   star?: 1 | 2 | 3;
+  checked?: boolean;
 };
 
 export const factors: Factor[] = [

@@ -3,6 +3,7 @@ import { sizes, color } from "style/theme";
 import { makeStyles } from "@material-ui/core/styles";
 import { posts } from "datas/post";
 import PostTiles from "components/PostTiles";
+import Upload from "components/Upload";
 
 const useStyles = makeStyles({
   root: {
@@ -21,7 +22,7 @@ const App: React.FC = () => {
         rel="stylesheet"
       />
       <body className={classes.root}>
-        <PostTiles posts={posts} />
+        <Upload />
       </body>
     </>
   );

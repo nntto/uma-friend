@@ -10,14 +10,7 @@ export default makeStyles({
   box: {
     margin: "5px 10px 10px",
   },
-  headline: {
-    margin: "5px 10px 5px",
-    borderBottom: "3px solid",
-    color: color.primary,
-  },
-  text: {
-    margin: "0 20px 0",
-  },
+
   supportBox: {
     marginLeft: "20px",
   },

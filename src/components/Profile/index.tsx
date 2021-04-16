@@ -1,5 +1,6 @@
 import SupportCard from "components/SupportCard";
 import { Support } from "datas/support";
+import Headline from "components/atoms/Headline";
 import useStyles from "./style";
 
 export default ({
@@ -10,7 +11,7 @@ export default ({
   level,
 }: {
   name: string;
-  trainerId: number;
+  trainerId: string;
   support: Support;
   stack: 1 | 2 | 3 | 4;
   level: number;
@@ -20,12 +21,9 @@ export default ({
     <>
       <div className={classes.profile}>プロフィール</div>
       <div className={classes.box}>
-        <div className={classes.headline}>名前</div>
-        <div className={classes.text}>{name}</div>
-        <div className={classes.headline}>トレーナーID</div>
-        <div className={classes.text}>{trainerId}</div>
-        <div className={classes.headline}>育成サポート</div>
-
+        <Headline headline="名前" text={name} />
+        <Headline headline="トレーナーID" text={String(trainerId)} />
+        <Headline headline="育成サポート" text={false} />
         <div className={classes.supportBox}>
           <SupportCard support={support} stack={stack} level={level} />
         </div>
