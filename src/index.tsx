@@ -1,13 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import { configureStore } from "@reduxjs/toolkit";
+import { dbSlice } from "features";
+import { Provider } from "react-redux";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
+const store = configureStore({
+  reducer: dbSlice.reducer,
+});
+store.dispatch(dbSlice.actions.dbUpdated("factors"));
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>,
   document.getElementById("root")
 );
 

@@ -23,4 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 src/functions/uma-friend-firebase-adminsdk.json
+src/features/uma-friend-firebase-adminsdk.json
 firebaseConfig.ts

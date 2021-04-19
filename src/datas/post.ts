@@ -24,7 +24,8 @@ export const initialPost: Post = {
       imgUrl:
         "https://firebasestorage.googleapis.com/v0/b/uma-friend.appspot.com/o/umamusume%2Fundefined.png?alt=media&token=d99c7d77-9ca4-4aea-8c99-9608fd7c295c",
     },
-    factorIds: {},
+    factorIdMap: {},
+    factorIds: [],
     factors: [],
   },
   grandMom1: {
@@ -35,7 +36,8 @@ export const initialPost: Post = {
       imgUrl:
         "https://firebasestorage.googleapis.com/v0/b/uma-friend.appspot.com/o/umamusume%2Fundefined.png?alt=media&token=d99c7d77-9ca4-4aea-8c99-9608fd7c295c",
     },
-    factorIds: {},
+    factorIdMap: {},
+    factorIds: [],
     factors: [],
   },
   grandMom2: {
@@ -46,7 +48,8 @@ export const initialPost: Post = {
       imgUrl:
         "https://firebasestorage.googleapis.com/v0/b/uma-friend.appspot.com/o/umamusume%2Fundefined.png?alt=media&token=d99c7d77-9ca4-4aea-8c99-9608fd7c295c",
     },
-    factorIds: {},
+    factorIdMap: {},
+    factorIds: [],
     factors: [],
   },
   supportId: "undefined",
@@ -71,7 +74,8 @@ export const posts: Post[] = [
         imgUrl:
           "https://firebasestorage.googleapis.com/v0/b/uma-friend.appspot.com/o/umamusume%2Fundefined.png?alt=media&token=d99c7d77-9ca4-4aea-8c99-9608fd7c295c",
       },
-      factorIds: {},
+      factorIdMap: {},
+      factorIds: [],
       factors: [],
     },
     grandMom1: {
@@ -82,7 +86,8 @@ export const posts: Post[] = [
         imgUrl:
           "https://firebasestorage.googleapis.com/v0/b/uma-friend.appspot.com/o/umamusume%2Fundefined.png?alt=media&token=d99c7d77-9ca4-4aea-8c99-9608fd7c295c",
       },
-      factorIds: {},
+      factorIdMap: {},
+      factorIds: [],
       factors: [],
     },
     grandMom2: {
@@ -93,7 +98,8 @@ export const posts: Post[] = [
         imgUrl:
           "https://firebasestorage.googleapis.com/v0/b/uma-friend.appspot.com/o/umamusume%2Fundefined.png?alt=media&token=d99c7d77-9ca4-4aea-8c99-9608fd7c295c",
       },
-      factorIds: {},
+      factorIdMap: {},
+      factorIds: [],
       factors: [],
     },
     supportId: "undefined",
@@ -117,7 +123,8 @@ export const posts: Post[] = [
         imgUrl:
           "https://img.game8.jp/5700653/5302926d33c34f2aa38202e14c5fddef.png/original",
       },
-      factorIds: {
+      factorIds: ["speed"],
+      factorIdMap: {
         speed: true,
       },
       factors: [
@@ -138,7 +145,8 @@ export const posts: Post[] = [
         imgUrl:
           "https://img.game8.jp/5700653/5302926d33c34f2aa38202e14c5fddef.png/original",
       },
-      factorIds: {
+      factorIds: ["speed"],
+      factorIdMap: {
         speed: true,
       },
       factors: [
@@ -159,7 +167,8 @@ export const posts: Post[] = [
         imgUrl:
           "https://img.game8.jp/5700654/0f2b1df09ee8c849b9f4c61d5c0051df.png/show",
       },
-      factorIds: {
+      factorIds: ["speed"],
+      factorIdMap: {
         speed: true,
       },
       factors: [

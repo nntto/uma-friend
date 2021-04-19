@@ -4,8 +4,9 @@ import { Factor } from "datas/factors";
 export type keishoUmamusume = {
   umamusumeId: string;
   umamusume: Umamusume;
-  factorIds: {
+  factorIdMap: {
     [key: string]: true;
   };
+  factorIds: string[];
   factors: Factor[];
 };
