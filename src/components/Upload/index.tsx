@@ -1,9 +1,5 @@
 import { useEffect, useState } from "react";
 import { Post, initialPost } from "datas/post";
-import { Support } from "datas/support";
-import { Umamusume } from "datas/umamusume";
-import { fetchDbData } from "functions";
-import { Factor } from "datas/factors";
 import { DbState, dbSlice, Db } from "features";
 import PostTile from "components/PostTiles/PostTile";
 import {
@@ -15,6 +11,7 @@ import {
 } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
+import produce from "immer";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -49,28 +46,33 @@ const MenuProps = {
 export default () => {
   const classes = useStyles();
 
-  const post = useSelector<DbState, Post>((state) => state.post);
-  const db = useSelector<DbState, Db>((state) => {
-    return state.db;
-  });
+  const [currentPost, setCurrentPost] = useState<Post>(initialPost);
+  const db = useSelector<DbState, Db>((state) => state.db);
+  console.log(db);
   const dispatch = useDispatch();
-  const { postInitialized, postUpdated } = dbSlice.actions;
-  dispatch(postInitialized());
-  const factors: any[] = [];
+  const { postUpdated } = dbSlice.actions;
+
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     const factorIds = Array.from(event.target.value as string[]);
-    dispatch(
-      postUpdated({ index1: "mom", index2: "factorIds", value: factorIds })
-    );
+
+    setCurrentPost((baseState) => {
+      return produce(baseState, (draftState) => {
+        draftState.mom.factorIds = factorIds;
+      });
+    });
+    console.log(currentPost);
   };
 
+  useEffect(() => {
+    dispatch(postUpdated(currentPost));
+  }, [currentPost]);
   return (
     <>
       <FormControl className={classes.formControl}>
         <InputLabel>Name</InputLabel>
         <Select
           multiple
-          value={post.mom.factorIds}
+          value={currentPost.mom.factorIds}
           onChange={handleChange}
           input={<Input />}
           MenuProps={MenuProps}
@@ -82,7 +84,7 @@ export default () => {
           ))}
         </Select>
       </FormControl>
-      <PostTile post={post} />
+      <PostTile post={currentPost} />
     </>
   );
 };

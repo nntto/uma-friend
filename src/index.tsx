@@ -10,7 +10,6 @@ import reportWebVitals from "./reportWebVitals";
 const store = configureStore({
   reducer: dbSlice.reducer,
 });
-store.dispatch(dbSlice.actions.dbUpdated("factors"));
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>

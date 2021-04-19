@@ -1,8 +1,6 @@
 import { Post } from "datas/post";
-import { Factor } from "datas/factors";
-import { Support } from "datas/support";
-import { Umamusume } from "datas/umamusume";
 import collectionName from "datas/constants";
+
 import { db } from "firebaseDb";
 
 export const upload = (collection: string, record: Post) => {
@@ -37,19 +35,5 @@ export const fetchDbData = (
       newState.push(doc.data());
     });
     setState(newState);
-  });
-};
-export const getDbData = (
-  collection: string
-): Promise<Factor[] | Umamusume[] | Support[]> => {
-  const ref = db.collection(collection);
-  const newState: any[] = [];
-  ref.get().then((snapshot) => {
-    snapshot.forEach((doc) => {
-      newState.push(doc.data());
-    });
-  });
-  return new Promise((resolve, reject) => {
-    resolve(newState);
   });
 };

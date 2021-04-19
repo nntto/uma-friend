@@ -1,15 +1,18 @@
 import "./App.css";
 import { sizes, color } from "style/theme";
 import { makeStyles } from "@material-ui/core/styles";
-import { Post, posts } from "datas/post";
-import PostTiles from "components/PostTiles";
+import { initialPost, Post } from "datas/post";
 import Upload from "components/Upload";
 import InputTest from "components/Upload/InputTest";
-import { useDispatch, useSelector } from "react-redux";
-import { dbSlice, DbState } from "features";
-import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { dbSlice } from "features";
+import { useEffect, useState } from "react";
 
 import collectionName from "datas/constants";
+import { Factor } from "datas/factors";
+import { Umamusume } from "datas/umamusume";
+import { Support } from "datas/support";
+import { fetchDbData } from "functions";
 
 const useStyles = makeStyles({
   root: {
@@ -21,14 +24,37 @@ const useStyles = makeStyles({
 
 const App: React.FC = () => {
   const classes = useStyles();
+
+  const [post, setPost] = useState<Post>(initialPost);
+  const [factors, setFactors] = useState<Factor[]>([]);
+  const [umamusumes, setUmamusumes] = useState<Umamusume[]>([]);
+  const [supports, setSupports] = useState<Support[]>([]);
+
   const dispatch = useDispatch();
-  const { dbUpdated } = dbSlice.actions;
-  const update = (collection: keyof typeof collectionName) =>
-    dispatch(dbUpdated(collection));
+  const { setDbData } = dbSlice.actions;
+  const setData = (payload: {
+    key: keyof typeof collectionName;
+    value: Factor[] | Umamusume[] | Post[] | Support[];
+  }) => dispatch(setDbData(payload));
   useEffect(() => {
-    update("factors");
-    update("supports");
-    update("umamusumes");
+    setData({
+      key: "factors",
+      value: factors,
+    });
+    setData({
+      key: "umamusumes",
+      value: umamusumes,
+    });
+    setData({
+      key: "supports",
+      value: supports,
+    });
+  }, [factors, umamusumes, supports]);
+
+  useEffect(() => {
+    fetchDbData("factors", setFactors);
+    fetchDbData("umamusumes", setUmamusumes);
+    fetchDbData("supportCards", setSupports);
   }, []);
   return (
     <>
