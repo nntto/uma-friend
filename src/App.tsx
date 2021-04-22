@@ -2,13 +2,13 @@ import "./App.css";
 import { sizes, color } from "style/theme";
 import { makeStyles } from "@material-ui/core/styles";
 import { initialPost, Post } from "datas/post";
-import Upload from "components/Upload";
-import InputTest from "components/Upload/InputTest";
 import { useDispatch } from "react-redux";
 import { dbSlice } from "features";
 import { useEffect, useState } from "react";
 import { fetchDbData } from "functions";
-import { Factor, Umamusume, Support, constantsKeys } from "datas";
+import { Factor, Umamusume, Support, constantsKeys, posts } from "datas";
+import PostTile from "components/PostTiles/PostTile";
+import PostTiles from "components/PostTiles";
 
 const useStyles = makeStyles({
   root: {
@@ -59,8 +59,7 @@ const App: React.FC = () => {
         rel="stylesheet"
       />
       <body className={classes.root}>
-        <InputTest />
-        <Upload />
+        <PostTiles posts={posts} />
       </body>
     </>
   );

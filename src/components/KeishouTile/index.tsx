@@ -1,13 +1,12 @@
 import { Grid } from "@material-ui/core";
 import FactorTiles from "components/FactorTiles";
-import { Factor } from "datas/factors";
-import { Umamusume } from "datas/umamusume";
+import { Umamusume, keishoUmamusume } from "datas";
 
 export default ({
   factors,
   umamusume,
 }: {
-  factors: Factor[];
+  factors: keishoUmamusume["factors"];
   umamusume: Umamusume;
 }) => {
   return (

@@ -5,11 +5,11 @@ export const factorDatas = {
   G1: "レース因子",
   skill: "通常因子",
 } as const;
-export type FactorIdTypes = keyof typeof factorDatas;
+export type FactorTypes = keyof typeof factorDatas;
 export type Factor = {
   id?: string;
   name: string;
-  type: FactorIdTypes;
+  type: FactorTypes;
   desc: string;
   star?: 1 | 2 | 3;
   checked?: boolean;

@@ -26,9 +26,8 @@ export const initialPost: Post = {
       imgUrl:
         "https://firebasestorage.googleapis.com/v0/b/uma-friend.appspot.com/o/umamusume%2Fundefined.png?alt=media&token=d99c7d77-9ca4-4aea-8c99-9608fd7c295c",
     },
-    factorIdMap: {},
-    factorIds: [],
-    factors: [],
+    factorIds: {},
+    factors: {},
   },
   grandMom1: {
     umamusumeId: "undefined",
@@ -38,9 +37,8 @@ export const initialPost: Post = {
       imgUrl:
         "https://firebasestorage.googleapis.com/v0/b/uma-friend.appspot.com/o/umamusume%2Fundefined.png?alt=media&token=d99c7d77-9ca4-4aea-8c99-9608fd7c295c",
     },
-    factorIdMap: {},
-    factorIds: [],
-    factors: [],
+    factorIds: {},
+    factors: {},
   },
   grandMom2: {
     umamusumeId: "undefined",
@@ -50,9 +48,8 @@ export const initialPost: Post = {
       imgUrl:
         "https://firebasestorage.googleapis.com/v0/b/uma-friend.appspot.com/o/umamusume%2Fundefined.png?alt=media&token=d99c7d77-9ca4-4aea-8c99-9608fd7c295c",
     },
-    factorIdMap: {},
-    factorIds: [],
-    factors: [],
+    factorIds: {},
+    factors: {},
   },
   supportId: "undefined",
   support: {
@@ -76,9 +73,8 @@ export const posts: Post[] = [
         imgUrl:
           "https://firebasestorage.googleapis.com/v0/b/uma-friend.appspot.com/o/umamusume%2Fundefined.png?alt=media&token=d99c7d77-9ca4-4aea-8c99-9608fd7c295c",
       },
-      factorIdMap: {},
-      factorIds: [],
-      factors: [],
+      factorIds: {},
+      factors: {},
     },
     grandMom1: {
       umamusumeId: "undefined",
@@ -88,9 +84,8 @@ export const posts: Post[] = [
         imgUrl:
           "https://firebasestorage.googleapis.com/v0/b/uma-friend.appspot.com/o/umamusume%2Fundefined.png?alt=media&token=d99c7d77-9ca4-4aea-8c99-9608fd7c295c",
       },
-      factorIdMap: {},
-      factorIds: [],
-      factors: [],
+      factorIds: {},
+      factors: {},
     },
     grandMom2: {
       umamusumeId: "undefined",
@@ -100,9 +95,8 @@ export const posts: Post[] = [
         imgUrl:
           "https://firebasestorage.googleapis.com/v0/b/uma-friend.appspot.com/o/umamusume%2Fundefined.png?alt=media&token=d99c7d77-9ca4-4aea-8c99-9608fd7c295c",
       },
-      factorIdMap: {},
-      factorIds: [],
-      factors: [],
+      factorIds: {},
+      factors: {},
     },
     supportId: "undefined",
     support: {
@@ -125,19 +119,16 @@ export const posts: Post[] = [
         imgUrl:
           "https://img.game8.jp/5700653/5302926d33c34f2aa38202e14c5fddef.png/original",
       },
-      factorIds: ["speed"],
-      factorIdMap: {
-        speed: true,
-      },
-      factors: [
-        {
+      factorIds: { status: "speed" },
+      factors: {
+        status: {
           id: "speed",
           name: "スピード",
           type: "status",
           desc: "スピードが上がる因子です",
           star: 3,
         },
-      ],
+      },
     },
     grandMom1: {
       umamusumeId: "mesiromaceen_endofskt",
@@ -147,19 +138,16 @@ export const posts: Post[] = [
         imgUrl:
           "https://img.game8.jp/5700653/5302926d33c34f2aa38202e14c5fddef.png/original",
       },
-      factorIds: ["speed"],
-      factorIdMap: {
-        speed: true,
-      },
-      factors: [
-        {
+      factorIds: { status: "speed" },
+      factors: {
+        status: {
           id: "speed",
           name: "スピード",
           type: "status",
           desc: "スピードが上がる因子です",
           star: 3,
         },
-      ],
+      },
     },
     grandMom2: {
       umamusumeId: "mesiromaceen_endofskt",
@@ -169,40 +157,16 @@ export const posts: Post[] = [
         imgUrl:
           "https://img.game8.jp/5700654/0f2b1df09ee8c849b9f4c61d5c0051df.png/show",
       },
-      factorIds: ["speed"],
-      factorIdMap: {
-        speed: true,
-      },
-      factors: [
-        {
+      factorIds: { status: "speed" },
+      factors: {
+        status: {
           id: "speed",
           name: "スピード",
           type: "status",
           desc: "スピードが上がる因子です",
-          star: 2,
+          star: 3,
         },
-        {
-          id: "power",
-          name: "パワー",
-          type: "status",
-          desc: "パワーが上がる因子です",
-          star: 2,
-        },
-        {
-          id: "tyukyori",
-          name: "中距離",
-          type: "appropriate",
-          desc: "中距離が得意になる",
-          star: 2,
-        },
-        {
-          id: "koitsuiso",
-          name: "好意追走",
-          type: "skill",
-          desc: "",
-          star: 2,
-        },
-      ],
+      },
     },
     supportId: "kitasan_black",
     support: {
