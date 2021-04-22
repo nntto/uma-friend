@@ -14,4 +14,12 @@ export default makeStyles({
   supportBox: {
     marginLeft: "20px",
   },
+  headline: {
+    margin: "5px 10px 5px",
+    borderBottom: "3px solid",
+    color: color.primary,
+  },
+  text: {
+    margin: "0 20px 0",
+  },
 });

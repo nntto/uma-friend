@@ -9,6 +9,7 @@ import { fetchDbData } from "functions";
 import { Factor, Umamusume, Support, constantsKeys, posts } from "datas";
 import PostTile from "components/PostTiles/PostTile";
 import PostTiles from "components/PostTiles";
+import Upload from "components/Upload";
 
 const useStyles = makeStyles({
   root: {
@@ -59,6 +60,7 @@ const App: React.FC = () => {
         rel="stylesheet"
       />
       <body className={classes.root}>
+        <Upload />
         <PostTiles posts={posts} />
       </body>
     </>

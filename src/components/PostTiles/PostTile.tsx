@@ -4,7 +4,13 @@ import { Grid } from "@material-ui/core";
 import Profile from "components/Profile";
 import makeStyles from "./style";
 
-export default ({ post }: { post: Post }) => {
+export default ({
+  post,
+  setPost,
+}: {
+  post: Post;
+  setPost?: React.Dispatch<React.SetStateAction<Post>> | undefined;
+}) => {
   const classes = makeStyles();
   return (
     <>
@@ -14,6 +20,7 @@ export default ({ post }: { post: Post }) => {
         support={post.support}
         stack={post.stack}
         level={post.level}
+        setPost={setPost}
       />
       <div className={classes.head}>
         <div className={classes.text}>因子</div>
