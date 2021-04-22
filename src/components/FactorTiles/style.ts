@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { sizes } from "style/theme";
 
 export default makeStyles({
   root: {},
@@ -15,9 +16,10 @@ export default makeStyles({
   star: {
     zIndex: 1,
     width: "100%",
+    fontSize: sizes[8],
     position: "absolute",
     textAlign: "center",
-    bottom: "-20px",
+    bottom: "-25px",
   },
   box: {
     margin: "10px 0 10px",

@@ -1,5 +1,4 @@
-import { Umamusume } from "datas/umamusume";
-import { Factor } from "datas/factors";
+import { Umamusume, Factor } from "datas";
 
 export type keishoUmamusume = {
   umamusumeId: string;
@@ -7,6 +6,18 @@ export type keishoUmamusume = {
   factorIdMap: {
     [key: string]: true;
   };
-  factorIds: string[];
-  factors: Factor[];
+  factorIds: {
+    status: string;
+    appropriate: string;
+    uniqueSkill: string;
+    G1: string[];
+    skill: string[];
+  };
+  factors: {
+    status: Factor;
+    appropriate: Factor;
+    uniqueSkill: Factor;
+    G1: Factor[];
+    skill: Factor[];
+  };
 };

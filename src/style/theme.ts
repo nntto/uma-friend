@@ -17,6 +17,8 @@ export const color = {
   primary: "#81CE09",
   secondary: "#C5C5C5",
   stack: "#36C9E0",
+  starValid: "#F6D239",
+  starInvalid: "#E8E2DE",
 };
 
 export type colorType = typeof color[keyof typeof color];

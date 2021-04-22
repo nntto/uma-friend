@@ -1,10 +1,13 @@
 import { Factor } from "datas/factors";
 import Rating from "@material-ui/lab/Rating";
 import { color } from "style/theme";
+import { AiFillStar } from "react-icons/ai";
 import useStyles from "./style";
 
 export default ({ factor }: { factor: Factor }) => {
+  if (!factor) return <></>;
   const classes = useStyles();
+  const star = factor.star ?? 0;
   return (
     <>
       <div
@@ -16,11 +19,11 @@ export default ({ factor }: { factor: Factor }) => {
       >
         <div className={classes.name}>{factor.name}</div>
         <div className={classes.star}>
-          {factor.star ? (
-            <Rating defaultValue={factor.star} max={3} readOnly size="large" />
-          ) : (
-            <Rating defaultValue={0} max={3} size="large" />
-          )}
+          {[1, 2, 3].map((criteria) => (
+            <AiFillStar
+              color={star >= criteria ? color.starValid : color.starInvalid}
+            />
+          ))}
         </div>
       </div>
     </>

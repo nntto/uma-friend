@@ -1,12 +1,19 @@
+export const factorDatas = {
+  status: "ステータス因子",
+  appropriate: "適正因子",
+  uniqueSkill: "固有スキル",
+  G1: "レース因子",
+  skill: "通常因子",
+} as const;
+export type FactorIdTypes = keyof typeof factorDatas;
 export type Factor = {
   id?: string;
   name: string;
-  type: "status" | "appropriate" | "uniqueSkill" | "G1" | "skill";
+  type: FactorIdTypes;
   desc: string;
   star?: 1 | 2 | 3;
   checked?: boolean;
 };
-
 export const factors: Factor[] = [
   {
     id: "speed",

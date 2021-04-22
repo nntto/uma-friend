@@ -52,6 +52,7 @@ module.exports = {
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "react/require-default-props": "off",
     "no-param-reassign": 0,
+    "prefer-destructuring": "off",
   },
   settings: {
     "import/resolver": {

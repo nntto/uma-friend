@@ -7,12 +7,8 @@ import InputTest from "components/Upload/InputTest";
 import { useDispatch } from "react-redux";
 import { dbSlice } from "features";
 import { useEffect, useState } from "react";
-
-import collectionName from "datas/constants";
-import { Factor } from "datas/factors";
-import { Umamusume } from "datas/umamusume";
-import { Support } from "datas/support";
 import { fetchDbData } from "functions";
+import { Factor, Umamusume, Support, constantsKeys } from "datas";
 
 const useStyles = makeStyles({
   root: {
@@ -33,7 +29,7 @@ const App: React.FC = () => {
   const dispatch = useDispatch();
   const { setDbData } = dbSlice.actions;
   const setData = (payload: {
-    key: keyof typeof collectionName;
+    key: constantsKeys;
     value: Factor[] | Umamusume[] | Post[] | Support[];
   }) => dispatch(setDbData(payload));
   useEffect(() => {

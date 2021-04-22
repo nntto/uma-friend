@@ -15,6 +15,8 @@ export type Post = {
   updatedAt?: Date;
 };
 
+export const moms = ["mom", "grandMom1", "grandMom2"] as const;
+export type Moms = typeof moms[number];
 export const initialPost: Post = {
   mom: {
     umamusumeId: "undefined",

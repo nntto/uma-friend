@@ -1,23 +1,19 @@
 /* eslint-disable no-param-reassign */
-import { initialPost, Post } from "datas/post";
-import { Factor } from "datas/factors";
-import { Support } from "datas/support";
-import { Umamusume } from "datas/umamusume";
-import collectionName from "datas/constants";
-import { db } from "firebaseDb";
-import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
-import produce from "immer";
+import {
+  Factor,
+  Umamusume,
+  Support,
+  constantsKeys,
+  initialPost,
+  Post,
+} from "datas";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type Db = {
   posts: Post[];
   factors: Factor[];
   supports: Support[];
   umamusumes: Umamusume[];
-};
-export type updatedPostArgument = {
-  index1: keyof Post;
-  index2?: string;
-  value: any;
 };
 export type DbState = {
   db: Db;
@@ -29,14 +25,15 @@ type Reducer = {
     {
       payload,
     }: PayloadAction<{
-      key: keyof typeof collectionName;
+      key: constantsKeys;
       value: Factor[] | Umamusume[] | Post[] | Support[];
     }>
   ) => void;
   postInitialized: (state: DbState) => void;
-  postUpdated: (state: DbState, { payload }: PayloadAction<Post>) => void;
 };
 
+// immerはredux toolkitに同梱されているはずだが、動いてくれない
+// stateの型がwritabledraftになっていないことが原因か？
 export const dbSlice = createSlice<DbState, Reducer>({
   name: "db",
   initialState: {
@@ -59,9 +56,6 @@ export const dbSlice = createSlice<DbState, Reducer>({
     }),
     postInitialized: (state) => {
       state.post = initialPost;
-    },
-    postUpdated: (state, { payload }) => {
-      return { ...state, post: payload };
     },
   },
 });

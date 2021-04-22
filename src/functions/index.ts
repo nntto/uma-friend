@@ -1,12 +1,12 @@
 import { Post } from "datas/post";
-import collectionName from "datas/constants";
+import { constants, constantValues } from "datas/constants";
 
 import { db } from "firebaseDb";
 
 export const upload = (collection: string, record: Post) => {
   const ref = db.collection(collection);
   switch (collection) {
-    case collectionName.posts: {
+    case constants.posts: {
       const docs: Required<Post> = {
         ...record,
         createdAt: new Date(),
@@ -23,9 +23,8 @@ export const upload = (collection: string, record: Post) => {
   }
 };
 
-type ValueOf<T> = T[keyof T];
 export const fetchDbData = (
-  collection: ValueOf<typeof collectionName>,
+  collection: constantValues,
   setState: React.Dispatch<React.SetStateAction<any[]>>
 ) => {
   const ref = db.collection(collection);
