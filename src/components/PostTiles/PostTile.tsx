@@ -25,7 +25,11 @@ export default ({
       <div className={classes.head}>
         <div className={classes.text}>因子</div>
       </div>
-      <KeishouTile factors={post.mom.factors} umamusume={post.mom.umamusume} />
+      <KeishouTile
+        factors={post.mom.factors}
+        umamusume={post.mom.umamusume}
+        setPost={setPost}
+      />
       <Grid container>
         <Grid item xs={2} md={2} lg={2} style={{ textAlign: "center" }}>
           <span className={classes.keishomoto}>継承元</span>
@@ -37,10 +41,12 @@ export default ({
       <KeishouTile
         factors={post.grandMom1.factors}
         umamusume={post.grandMom1.umamusume}
+        setPost={setPost}
       />
       <KeishouTile
         factors={post.grandMom2.factors}
         umamusume={post.grandMom2.umamusume}
+        setPost={setPost}
       />
     </>
   );

@@ -2,6 +2,16 @@ import SupportCard from "components/SupportCard";
 import { Support } from "datas/support";
 import { Post } from "datas";
 import produce from "immer";
+import { useSelector } from "react-redux";
+import { Db } from "features";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@material-ui/core";
+import { MdArrowDropDown } from "react-icons/md";
 import useStyles from "./style";
 
 export default ({
@@ -20,14 +30,32 @@ export default ({
   setPost?: React.Dispatch<React.SetStateAction<Post>> | undefined;
 }) => {
   const classes = useStyles();
+  const dbSupport = useSelector<Db, Support[]>((state) => state.supports);
+
+  const MiniSupport = ({ s }: { s: Support }) => (
+    <>
+      <p className={classes.sideBySide}>
+        <img className={classes.miniImg} alt="" src={s.imgUrl} />
+      </p>
+      <p className={classes.sideBySide}>{s.name}</p>
+    </>
+  );
 
   const handleChange = (event: any, index: string) => {
     if (!setPost) throw new Error("cannot update");
-    if (index !== "name" && index !== "trainerId")
-      throw new Error("cannot update");
     setPost((state) =>
       produce(state, (draftState) => {
-        draftState[index] = event.target.value;
+        const value = event.target.value;
+        if (index === "name" || index === "trainerId") {
+          draftState[index] = value;
+        } else if (index === "support") {
+          draftState.supportId = value;
+          draftState.support = dbSupport.find(
+            (finder) => finder.id === value
+          ) as Support;
+        } else {
+          throw new Error(`cannot update. index = ${index}`);
+        }
       })
     );
   };
@@ -37,10 +65,11 @@ export default ({
       <div className={classes.box}>
         <div className={classes.headline}>名前</div>
         {setPost ? (
-          <input
+          <TextField
             className={classes.text}
-            type="text"
+            id="profile-name"
             value={name}
+            variant="outlined"
             onChange={(e) => handleChange(e, "name")}
           />
         ) : (
@@ -48,10 +77,11 @@ export default ({
         )}
         <div className={classes.headline}>トレーナーID</div>
         {setPost ? (
-          <input
+          <TextField
             className={classes.text}
-            type="text"
+            id="profile-trainerIt"
             value={String(trainerId)}
+            variant="outlined"
             onChange={(e) => handleChange(e, "trainerId")}
           />
         ) : (
@@ -61,7 +91,29 @@ export default ({
         <div className={classes.text}>{false}</div>
 
         <div className={classes.supportBox}>
-          <SupportCard support={support} stack={stack} level={level} />
+          <FormControl className={classes.formControl}>
+            <Select
+              className={classes.select}
+              labelId="select-support"
+              id="select-support"
+              defaultValue="undefined"
+              value={support.id}
+              onChange={(e) => handleChange(e, "support")}
+            >
+              {dbSupport.map((itemSupport: Support) => (
+                <MenuItem key={itemSupport.id} value={itemSupport.id}>
+                  {itemSupport.name}
+                </MenuItem>
+              ))}
+              <MenuItem />
+            </Select>
+          </FormControl>
+          <SupportCard
+            setPost={setPost}
+            support={support}
+            stack={stack}
+            level={level}
+          />
         </div>
       </div>
     </>

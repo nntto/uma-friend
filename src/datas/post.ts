@@ -58,8 +58,8 @@ export const initialPost: Post = {
     imgUrl:
       "https://firebasestorage.googleapis.com/v0/b/uma-friend.appspot.com/o/umamusume%2Fundefined.png?alt=media&token=d99c7d77-9ca4-4aea-8c99-9608fd7c295c",
   },
-  stack: 1,
-  level: 1,
+  stack: 4,
+  level: 50,
   trainerId: "",
   name: "トレーナーちゃん",
 };

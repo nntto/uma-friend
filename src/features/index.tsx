@@ -1,12 +1,5 @@
 /* eslint-disable no-param-reassign */
-import {
-  Factor,
-  Umamusume,
-  Support,
-  constantsKeys,
-  initialPost,
-  Post,
-} from "datas";
+import { Factor, Umamusume, Support, constantsKeys, Post } from "datas";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type Db = {
@@ -15,13 +8,9 @@ export type Db = {
   supports: Support[];
   umamusumes: Umamusume[];
 };
-export type DbState = {
-  db: Db;
-  post: Post;
-};
 type Reducer = {
   setDbData: (
-    state: DbState,
+    state: Db,
     {
       payload,
     }: PayloadAction<{
@@ -29,33 +18,23 @@ type Reducer = {
       value: Factor[] | Umamusume[] | Post[] | Support[];
     }>
   ) => void;
-  postInitialized: (state: DbState) => void;
 };
 
 // immerはredux toolkitに同梱されているはずだが、動いてくれない
 // stateの型がwritabledraftになっていないことが原因か？
-export const dbSlice = createSlice<DbState, Reducer>({
+export const dbSlice = createSlice<Db, Reducer>({
   name: "db",
   initialState: {
-    db: {
-      posts: [],
-      factors: [],
-      supports: [],
-      umamusumes: [],
-    },
-    post: initialPost,
+    posts: [],
+    factors: [],
+    supports: [],
+    umamusumes: [],
   },
 
   reducers: {
     setDbData: (state, { payload }) => ({
       ...state,
-      db: {
-        ...state.db,
-        [payload.key]: payload.value,
-      },
+      [payload.key]: payload.value,
     }),
-    postInitialized: (state) => {
-      state.post = initialPost;
-    },
   },
 });

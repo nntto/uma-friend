@@ -1,6 +1,5 @@
 import { Post } from "datas/post";
 import { constants, constantValues } from "datas/constants";
-
 import { db } from "firebaseDb";
 
 export const upload = (collection: string, record: Post) => {

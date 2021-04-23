@@ -1,5 +1,5 @@
 export type Support = {
-  id?: string;
+  id: string;
   name: string;
   imgUrl: string;
 };
