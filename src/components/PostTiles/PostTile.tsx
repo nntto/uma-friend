@@ -1,7 +1,11 @@
-import { Post } from "datas/post";
+import { Moms, Post } from "datas/post";
 import KeishouTile from "components/KeishouTile";
 import { Grid } from "@material-ui/core";
 import Profile from "components/Profile";
+import produce from "immer";
+import { Umamusume } from "datas";
+import { Db } from "features";
+import { useSelector } from "react-redux";
 import makeStyles from "./style";
 
 export default ({
@@ -12,6 +16,29 @@ export default ({
   setPost?: React.Dispatch<React.SetStateAction<Post>> | undefined;
 }) => {
   const classes = makeStyles();
+  const dbUmamusumes = useSelector<Db, Umamusume[]>(
+    (state) => state.umamusumes
+  );
+
+  const setKeishoUmamusume = (momId: Moms) =>
+    setPost
+      ? (value: string, index: string) => {
+          setPost((state) =>
+            produce(state, (draftState) => {
+              if (index === "name" || index === "trainerId") {
+                draftState[index] = value;
+              } else if (index === "umamusume") {
+                draftState[momId].umamusumeId = value;
+                draftState[momId].umamusume = dbUmamusumes.find(
+                  (finder) => finder.id === value
+                ) as Umamusume;
+              } else {
+                throw new Error(`cannot update. index = ${index}`);
+              }
+            })
+          );
+        }
+      : undefined;
   return (
     <>
       <Profile
@@ -28,7 +55,7 @@ export default ({
       <KeishouTile
         factors={post.mom.factors}
         umamusume={post.mom.umamusume}
-        setPost={setPost}
+        setKeishoUmamusume={setKeishoUmamusume("mom")}
       />
       <Grid container>
         <Grid item xs={2} md={2} lg={2} style={{ textAlign: "center" }}>
@@ -41,12 +68,12 @@ export default ({
       <KeishouTile
         factors={post.grandMom1.factors}
         umamusume={post.grandMom1.umamusume}
-        setPost={setPost}
+        setKeishoUmamusume={setKeishoUmamusume("grandMom1")}
       />
       <KeishouTile
         factors={post.grandMom2.factors}
         umamusume={post.grandMom2.umamusume}
-        setPost={setPost}
+        setKeishoUmamusume={setKeishoUmamusume("grandMom2")}
       />
     </>
   );

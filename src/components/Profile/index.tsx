@@ -12,6 +12,7 @@ import {
   TextField,
 } from "@material-ui/core";
 import { MdArrowDropDown } from "react-icons/md";
+import MenuItemWithImg from "components/atom/MenuItemWithImg";
 import useStyles from "./style";
 
 export default ({
@@ -31,15 +32,6 @@ export default ({
 }) => {
   const classes = useStyles();
   const dbSupport = useSelector<Db, Support[]>((state) => state.supports);
-
-  const MiniSupport = ({ s }: { s: Support }) => (
-    <>
-      <p className={classes.sideBySide}>
-        <img className={classes.miniImg} alt="" src={s.imgUrl} />
-      </p>
-      <p className={classes.sideBySide}>{s.name}</p>
-    </>
-  );
 
   const handleChange = (event: any, index: string) => {
     if (!setPost) throw new Error("cannot update");
@@ -91,23 +83,26 @@ export default ({
         <div className={classes.text}>{false}</div>
 
         <div className={classes.supportBox}>
-          <FormControl className={classes.formControl}>
-            <Select
-              className={classes.select}
-              labelId="select-support"
-              id="select-support"
-              defaultValue="undefined"
-              value={support.id}
-              onChange={(e) => handleChange(e, "support")}
-            >
-              {dbSupport.map((itemSupport: Support) => (
-                <MenuItem key={itemSupport.id} value={itemSupport.id}>
-                  {itemSupport.name}
-                </MenuItem>
-              ))}
-              <MenuItem />
-            </Select>
-          </FormControl>
+          {setPost ? (
+            <FormControl className={classes.formControl}>
+              <Select
+                className={classes.select}
+                labelId="select-support"
+                id="select-support"
+                defaultValue="undefined"
+                value={support.id}
+                onChange={(e) => handleChange(e, "support")}
+                renderValue={() => <p>{support.name}</p>}
+              >
+                {dbSupport.map((itemSupport: Support) => (
+                  <MenuItem key={itemSupport.id} value={itemSupport.id}>
+                    <MenuItemWithImg item={itemSupport} />
+                  </MenuItem>
+                ))}
+                <MenuItem />
+              </Select>
+            </FormControl>
+          ) : null}
           <SupportCard
             setPost={setPost}
             support={support}
