@@ -4,14 +4,7 @@ import { Post } from "datas";
 import produce from "immer";
 import { useSelector } from "react-redux";
 import { Db } from "features";
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-} from "@material-ui/core";
-import { MdArrowDropDown } from "react-icons/md";
+import { FormControl, MenuItem, Select, TextField } from "@material-ui/core";
 import MenuItemWithImg from "components/atom/MenuItemWithImg";
 import useStyles from "./style";
 

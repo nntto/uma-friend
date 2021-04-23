@@ -4,17 +4,17 @@ export type keishoUmamusume = {
   umamusumeId: string;
   umamusume: Umamusume;
   factorIds: {
-    status?: string;
-    appropriate?: string;
-    uniqueSkill?: string;
-    G1?: string[];
-    skill?: string[];
+    status: string | undefined;
+    appropriate: string | undefined;
+    uniqueSkill: string | undefined;
+    G1: string[];
+    skill: string[];
   };
   factors: {
-    status?: Factor;
-    appropriate?: Factor;
-    uniqueSkill?: Factor;
-    G1?: Factor[];
-    skill?: Factor[];
+    status: Factor | undefined;
+    appropriate: Factor | undefined;
+    uniqueSkill: Factor | undefined;
+    G1: Factor[];
+    skill: Factor[];
   };
 };

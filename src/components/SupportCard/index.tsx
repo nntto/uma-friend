@@ -1,4 +1,4 @@
-import { FormControl, MenuItem, Select } from "@material-ui/core";
+import { FormControl, MenuItem } from "@material-ui/core";
 import { Post } from "datas";
 import { Support } from "datas/support";
 import produce from "immer";
@@ -43,6 +43,7 @@ export default ({
         <div className={classes.rating}>
           <StyledRating
             style={{ zIndex: 11 }}
+            name="select-rating"
             value={stack}
             max={4}
             readOnly={!setPost}

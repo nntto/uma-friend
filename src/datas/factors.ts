@@ -7,7 +7,7 @@ export const factorDatas = {
 } as const;
 export type FactorTypes = keyof typeof factorDatas;
 export type Factor = {
-  id?: string;
+  id: string;
   name: string;
   type: FactorTypes;
   desc: string;

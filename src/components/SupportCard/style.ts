@@ -1,4 +1,4 @@
-import { MenuItem, Select } from "@material-ui/core";
+import { Select } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 import { color, sizes } from "style/theme";
@@ -7,15 +7,11 @@ export const StyledRating = withStyles({
   iconFilled: {
     color: color.stack,
   },
-  iconHover: {},
 })(Rating);
 
 export const StyledSelect = withStyles({
   root: {
     color: color.color.main,
-  },
-  label: {
-    textTransform: "capitalize",
   },
 })(Select);
 export const useStyles = makeStyles({

@@ -3,7 +3,7 @@ import KeishouTile from "components/KeishouTile";
 import { Grid } from "@material-ui/core";
 import Profile from "components/Profile";
 import produce from "immer";
-import { Umamusume } from "datas";
+import { Factor, FactorTypes, Umamusume } from "datas";
 import { Db } from "features";
 import { useSelector } from "react-redux";
 import makeStyles from "./style";
@@ -19,19 +19,75 @@ export default ({
   const dbUmamusumes = useSelector<Db, Umamusume[]>(
     (state) => state.umamusumes
   );
+  const dbFactors = useSelector<Db, Factor[]>((state) => state.factors);
 
   const setKeishoUmamusume = (momId: Moms) =>
     setPost
-      ? (value: string, index: string) => {
+      ? (
+          value: string | string[] | number,
+          index: string,
+          factorType?: FactorTypes,
+          factorId?: string
+        ) => {
           setPost((state) =>
             produce(state, (draftState) => {
-              if (index === "name" || index === "trainerId") {
-                draftState[index] = value;
-              } else if (index === "umamusume") {
-                draftState[momId].umamusumeId = value;
+              if (index === "umamusume") {
+                draftState[momId].umamusumeId = value as string;
                 draftState[momId].umamusume = dbUmamusumes.find(
                   (finder) => finder.id === value
                 ) as Umamusume;
+              } else if (index === "factor" && factorType) {
+                if (
+                  factorType === "status" ||
+                  factorType === "appropriate" ||
+                  factorType === "uniqueSkill"
+                ) {
+                  draftState[momId].factorIds[factorType] = value as string;
+                  const star = draftState[momId].factors[factorType]?.star;
+                  const dbfactor = dbFactors.find((f) => f.id === value);
+                  if (dbfactor !== undefined) {
+                    draftState[momId].factors[factorType] = {
+                      ...dbfactor,
+                      star,
+                    };
+                  }
+                } else {
+                  const newFactorIds = value as string[];
+                  const beforeFactorIds =
+                    draftState[momId].factorIds[factorType];
+                  const addIds = [...newFactorIds].filter(
+                    (e) => !beforeFactorIds.includes(e)
+                  );
+
+                  draftState[momId].factorIds[factorType] = newFactorIds;
+                  draftState[momId].factors[factorType].filter((e) =>
+                    newFactorIds.includes(e.id)
+                  );
+                  addIds.forEach((e) => {
+                    const dbFactor = dbFactors.find((f) => f.id === e);
+                    if (dbFactor !== undefined)
+                      draftState[momId].factors[factorType].push(dbFactor);
+                  });
+                }
+              } else if (index === "star" && factorId && factorType) {
+                if (
+                  factorType === "status" ||
+                  factorType === "appropriate" ||
+                  factorType === "uniqueSkill"
+                ) {
+                  draftState[momId].factors[factorType]!.star = value as
+                    | 1
+                    | 2
+                    | 3;
+                } else {
+                  draftState[momId].factors[factorType] = draftState[
+                    momId
+                  ].factors[factorType].map((item) =>
+                    item.id === factorId
+                      ? item
+                      : { ...item, star: value as 1 | 2 | 3 }
+                  );
+                }
               } else {
                 throw new Error(`cannot update. index = ${index}`);
               }
@@ -54,24 +110,34 @@ export default ({
       </div>
       <KeishouTile
         factors={post.mom.factors}
+        factorIds={post.mom.factorIds}
         umamusume={post.mom.umamusume}
         setKeishoUmamusume={setKeishoUmamusume("mom")}
       />
       <Grid container>
-        <Grid item xs={2} md={2} lg={2} style={{ textAlign: "center" }}>
+        <Grid
+          item
+          key="oya"
+          xs={2}
+          md={2}
+          lg={2}
+          style={{ textAlign: "center" }}
+        >
           <span className={classes.keishomoto}>継承元</span>
         </Grid>
-        <Grid item xs={10} md={10} lg={10}>
+        <Grid item key="border" xs={10} md={10} lg={10}>
           <div className={classes.border} />
         </Grid>
       </Grid>
       <KeishouTile
         factors={post.grandMom1.factors}
+        factorIds={post.grandMom1.factorIds}
         umamusume={post.grandMom1.umamusume}
         setKeishoUmamusume={setKeishoUmamusume("grandMom1")}
       />
       <KeishouTile
         factors={post.grandMom2.factors}
+        factorIds={post.grandMom2.factorIds}
         umamusume={post.grandMom2.umamusume}
         setKeishoUmamusume={setKeishoUmamusume("grandMom2")}
       />

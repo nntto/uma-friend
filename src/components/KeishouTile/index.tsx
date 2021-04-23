@@ -1,73 +1,110 @@
-import { FormControl, Grid, MenuItem, Select } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import FactorTiles from "components/FactorTiles";
-import { Umamusume, keishoUmamusume, Post, Support } from "datas";
+import { Umamusume, keishoUmamusume, FactorTypes, Factor } from "datas";
 import { Db } from "features";
-import produce from "immer";
 import { useSelector } from "react-redux";
-import MenuWithImg from "components/atom/MenuItemWithImg";
-import useStyles from "./style";
+import SelectFactors from "./SelectFactors";
+import SelectUmamusume from "./SelectUmamusume";
 
 export default ({
   factors,
+  factorIds,
   umamusume,
   setKeishoUmamusume,
 }: {
   factors: keishoUmamusume["factors"];
+  factorIds: keishoUmamusume["factorIds"];
   umamusume: Umamusume;
-  setKeishoUmamusume?: ((value: string, index: string) => void) | undefined;
+  setKeishoUmamusume?:
+    | ((
+        value: string | string[],
+        index: string,
+        factorType?:
+          | "status"
+          | "appropriate"
+          | "uniqueSkill"
+          | "G1"
+          | "skill"
+          | undefined,
+        factorId?: string | undefined
+      ) => void)
+    | undefined;
 }) => {
   const dbUmamusumes = useSelector<Db, Umamusume[]>(
     (state) => state.umamusumes
   );
-  const classes = useStyles();
-  const handleChange = (event: any, index: string) => {
+  const dbFactors = useSelector<Db, Factor[]>((state) => state.factors);
+  const handleChange = (
+    event: any,
+    index: string,
+    factorType?: FactorTypes,
+    factorId?: string
+  ) => {
     if (!setKeishoUmamusume) throw new Error("cannot update");
-    setKeishoUmamusume(event.target.value, index);
+    setKeishoUmamusume(event.target.value, index, factorType, factorId);
   };
 
   return (
     <Grid container>
-      <Grid item xs={12} md={2} lg={2} style={{ textAlign: "center" }}>
-        {setKeishoUmamusume ? (
-          <FormControl className={classes.formControl}>
-            <Select
-              className={classes.select}
-              labelId="select-support"
-              id="select-support"
-              defaultValue="undefined"
-              value={umamusume.id}
-              onChange={(e) => handleChange(e, "umamusume")}
-              disableUnderline
-              renderValue={() => (
-                <img
-                  src={umamusume.imgUrl}
-                  alt=""
-                  style={{
-                    width: "100%",
-                    maxWidth: "100px",
-                    margin: "5px 0 5px",
-                  }}
-                />
-              )}
-            >
-              {dbUmamusumes.map((itemUmamusume: Umamusume) => (
-                <MenuItem key={itemUmamusume.id} value={itemUmamusume.id}>
-                  <MenuWithImg item={itemUmamusume} />
-                </MenuItem>
-              ))}
-              <MenuItem />
-            </Select>
-          </FormControl>
-        ) : (
+      {setKeishoUmamusume ? (
+        <>
+          <Grid
+            item
+            key="select-umamusume"
+            xs={6}
+            md={1}
+            lg={1}
+            style={{ textAlign: "center" }}
+          >
+            <SelectUmamusume
+              dbUmamusumes={dbUmamusumes}
+              umamusume={umamusume}
+              handleChange={handleChange}
+            />
+          </Grid>
+          <Grid
+            item
+            key="select-factors"
+            xs={6}
+            md={2}
+            lg={2}
+            style={{ textAlign: "center" }}
+          >
+            <SelectFactors
+              factorIds={factorIds}
+              dbFactors={dbFactors}
+              handleChange={handleChange}
+            />
+          </Grid>
+        </>
+      ) : (
+        <Grid
+          item
+          key="select"
+          xs={12}
+          md={2}
+          lg={2}
+          style={{ textAlign: "center" }}
+        >
           <img
             src={umamusume.imgUrl}
             alt=""
             style={{ width: "100%", maxWidth: "100px", margin: "5px 0 5px" }}
           />
-        )}
-      </Grid>
-      <Grid item xs={12} md={10} lg={10}>
-        <FactorTiles factors={factors} />
+        </Grid>
+      )}
+      <Grid
+        item
+        key="factors"
+        xs={12}
+        md={9}
+        lg={9}
+        style={{ textAlign: "center" }}
+      >
+        <FactorTiles
+          factors={factors}
+          setKeishoUmamusume={setKeishoUmamusume}
+        />
       </Grid>
     </Grid>
   );

@@ -24,4 +24,7 @@ export default makeStyles({
   box: {
     margin: "10px 0 10px",
   },
+  notTouched: {
+    pointerEvents: "none",
+  },
 });

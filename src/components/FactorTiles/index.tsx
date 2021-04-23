@@ -1,25 +1,62 @@
 import { Grid } from "@material-ui/core";
-import { Factor, keishoUmamusume, FactorTypes } from "datas";
+import { FactorTypes, keishoUmamusume } from "datas";
 import FactorTile from "./FactorTile";
 import useStyles from "./style";
 
-export default ({ factors }: { factors: keishoUmamusume["factors"] }) => {
+export default ({
+  factors,
+  setKeishoUmamusume,
+}: {
+  factors: keishoUmamusume["factors"];
+  setKeishoUmamusume?:
+    | ((
+        value: string | string[],
+        index: string,
+        factorType?:
+          | "status"
+          | "appropriate"
+          | "uniqueSkill"
+          | "G1"
+          | "skill"
+          | undefined,
+        factorId?: string | undefined
+      ) => void)
+    | undefined;
+}) => {
   const classes = useStyles();
-  const factorList = [] as Factor[];
-  Object.keys(factors).forEach((factorType) => {
-    if (Array.isArray(factors[factorType as FactorTypes])) {
-      factorList.push(...(factors[factorType as FactorTypes] as Factor[]));
-    } else {
-      factorList.push(factors[factorType as FactorTypes] as Factor);
-    }
-  });
+
+  const createSetStar = (factorType: FactorTypes, factorId: string) =>
+    setKeishoUmamusume
+      ? (event: any) => {
+          setKeishoUmamusume(event.target.value, "star", factorType, factorId);
+        }
+      : undefined;
   return (
     <Grid container spacing={2} className={classes.box}>
-      {factorList.map((item) => (
-        <Grid item xs={6} md={6} lg={4} xl={3}>
-          <FactorTile factor={item} />
-        </Grid>
-      ))}
+      {Object.keys(factors).map((key) => {
+        const factorType = key as FactorTypes;
+
+        if (factorType === "G1" || factorType === "skill") {
+          return factors[factorType].map((item) => (
+            <Grid item key={item.id} xs={6} md={6} lg={4} xl={3}>
+              <FactorTile
+                factor={item}
+                setStar={createSetStar(factorType, item.id)}
+              />
+            </Grid>
+          ));
+        }
+        const factor = factors[factorType];
+        if (factor === undefined) return null;
+        return (
+          <Grid item key={factor.id} xs={6} md={6} lg={4} xl={3}>
+            <FactorTile
+              factor={factor}
+              setStar={createSetStar(factorType, factor.id)}
+            />
+          </Grid>
+        );
+      })}
     </Grid>
   );
 };

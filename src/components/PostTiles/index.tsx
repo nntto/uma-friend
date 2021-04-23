@@ -5,7 +5,7 @@ export default ({ posts }: { posts: Post[] }) => {
   return (
     <>
       {posts.map((item) => (
-        <PostTile post={item} />
+        <PostTile key={item.trainerId} post={item} />
       ))}
     </>
   );

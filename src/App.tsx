@@ -6,7 +6,6 @@ import { dbSlice } from "features";
 import { useEffect, useState } from "react";
 import { fetchDbData } from "functions";
 import { Factor, Umamusume, Support, constantsKeys, posts, Post } from "datas";
-import PostTile from "components/PostTiles/PostTile";
 import PostTiles from "components/PostTiles";
 import Upload from "components/Upload";
 
@@ -57,10 +56,10 @@ const App: React.FC = () => {
         href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic"
         rel="stylesheet"
       />
-      <body className={classes.root}>
+      <div className={classes.root}>
         <Upload />
         <PostTiles posts={posts} />
-      </body>
+      </div>
     </>
   );
 };
