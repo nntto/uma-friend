@@ -1,0 +1,8 @@
+[
+  {
+    "origin": ["https://uma-friend.firebaseapp.com", "http://localhost:3000"],
+    "responseHeader": ["*"],
+    "method": ["GET"],
+    "maxAgeSeconds": 86400
+  }
+]
