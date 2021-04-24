@@ -73,6 +73,7 @@ export default ({
             <SelectFactors
               factorIds={factorIds}
               dbFactors={dbFactors}
+              factors={factors}
               handleChange={handleChange}
             />
           </Grid>
@@ -101,10 +102,7 @@ export default ({
         lg={9}
         style={{ textAlign: "center" }}
       >
-        <FactorTiles
-          factors={factors}
-          setKeishoUmamusume={setKeishoUmamusume}
-        />
+        <FactorTiles factors={factors} />
       </Grid>
     </Grid>
   );

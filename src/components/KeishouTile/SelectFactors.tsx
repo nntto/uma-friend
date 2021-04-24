@@ -1,13 +1,16 @@
-import { FormControl, MenuItem, Select } from "@material-ui/core";
+import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 import { Factor, factorDatas, FactorTypes, keishoUmamusume } from "datas";
+import useStyles from "./style";
 
 export default ({
   factorIds,
   dbFactors,
+  factors,
   handleChange,
 }: {
   factorIds: keishoUmamusume["factorIds"];
   dbFactors: Factor[];
+  factors: keishoUmamusume["factors"];
   handleChange: (
     event: any,
     index: string,
@@ -21,19 +24,29 @@ export default ({
     factorId?: string | undefined
   ) => void;
 }) => {
+  const classes = useStyles();
   return (
     <>
       {Object.keys(factorIds).map((key) => {
         const factorType = key as FactorTypes;
         const isMulti = factorType === "G1" || factorType === "skill";
         const nullValue = isMulti ? [] : "";
+        const typedFactors = [] as Factor[];
+        if (isMulti) {
+          typedFactors.push(...((factors[factorType] as Factor[]) ?? []));
+        } else if (factors[factorType]) {
+          typedFactors.push(factors[factorType] as Factor);
+        }
         return (
-          <div>
-            <FormControl key={factorType}>
+          <div className={classes.selectFactorsBox}>
+            <FormControl
+              key={`seceltor-factor-${factorType}`}
+              className={classes.seceltFactorForm}
+            >
               <Select
                 multiple={isMulti}
-                labelId={`selector-${factorType}`}
-                id={`selector-${factorType}`}
+                labelId={`selector-factor-${factorType}`}
+                id={`selector-factor-${factorType}`}
                 displayEmpty
                 value={
                   factorIds[factorType] ? factorIds[factorType] : nullValue
@@ -63,6 +76,38 @@ export default ({
                   ))}
               </Select>
             </FormControl>
+
+            {typedFactors.map((item) => {
+              return (
+                <FormControl
+                  key={`selector-star-${item.id}`}
+                  className={classes.selectStarForm}
+                >
+                  <InputLabel shrink id={`selector-star-${item.id}`}>
+                    {item.name}
+                  </InputLabel>
+                  <Select
+                    labelWidth={10}
+                    labelId={`selector-star-${item.id}`}
+                    id={`selector-star-${item.id}`}
+                    value={item.star ?? 0}
+                    onChange={(e) =>
+                      handleChange(e, "star", factorType, item.id)
+                    }
+                    disableUnderline
+                  >
+                    <MenuItem value="" disabled>
+                      {item.name}
+                    </MenuItem>
+                    {[1, 2, 3].map((i) => (
+                      <MenuItem key={i} value={i}>
+                        ☆{i}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              );
+            })}
           </div>
         );
       })}

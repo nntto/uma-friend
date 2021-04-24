@@ -25,7 +25,7 @@ export default ({
 }) => {
   const classes = useStyles();
   return (
-    <FormControl className={classes.formControl}>
+    <FormControl>
       <Select
         className={classes.select}
         labelId="select-support"

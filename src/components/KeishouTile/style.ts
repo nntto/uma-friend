@@ -22,7 +22,10 @@ export default makeStyles({
   text: {
     margin: "0 20px 0",
   },
-  formControl: {},
+  selectFactorsBox: { display: "flex", alignItems: "flex-end" },
+  selectStarForm: { width: "80px" },
+  seceltFactorForm: { width: "140px" },
+
   sideBySide: {
     display: "inline-block",
   },

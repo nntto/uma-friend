@@ -82,8 +82,7 @@ export default ({
                 className={classes.select}
                 labelId="select-support"
                 id="select-support"
-                defaultValue="undefined"
-                value={support.id}
+                value={support.id ?? "undefine"}
                 onChange={(e) => handleChange(e, "support")}
                 renderValue={() => <p>{support.name}</p>}
               >
