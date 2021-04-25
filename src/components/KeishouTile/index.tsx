@@ -3,6 +3,7 @@ import FactorTiles from "components/FactorTiles";
 import { Umamusume, keishoUmamusume, FactorTypes, Factor } from "datas";
 import { Db } from "features";
 import { useSelector } from "react-redux";
+import { imageSource } from "datas/imageSource";
 import SelectFactors from "./SelectFactors";
 import SelectUmamusume from "./SelectUmamusume";
 
@@ -79,7 +80,7 @@ export default ({
           style={{ textAlign: "center" }}
         >
           <img
-            src={umamusume.imgUrl}
+            src={imageSource.umamusumes[umamusume.id]}
             alt=""
             style={{ width: "100%", maxWidth: "100px", margin: "5px 0 5px" }}
           />

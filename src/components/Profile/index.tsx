@@ -88,7 +88,10 @@ export default ({
               >
                 {dbSupport.map((itemSupport: Support) => (
                   <MenuItem key={itemSupport.id} value={itemSupport.id}>
-                    <MenuItemWithImg item={itemSupport} />
+                    <MenuItemWithImg
+                      collection="supportCards"
+                      item={itemSupport}
+                    />
                   </MenuItem>
                 ))}
                 <MenuItem />

@@ -1,6 +1,7 @@
 import { FormControl, MenuItem, Select } from "@material-ui/core";
 import { Umamusume } from "datas";
 import MenuWithImg from "components/atom/MenuItemWithImg";
+import { imageSource } from "datas/imageSource";
 import useStyles from "./style";
 
 export default ({
@@ -36,7 +37,7 @@ export default ({
         disableUnderline
         renderValue={() => (
           <img
-            src={umamusume.imgUrl}
+            src={imageSource.umamusumes[umamusume.id]}
             alt=""
             style={{
               width: "100%",
@@ -48,7 +49,7 @@ export default ({
       >
         {dbUmamusumes.map((itemUmamusume: Umamusume) => (
           <MenuItem key={itemUmamusume.id} value={itemUmamusume.id}>
-            <MenuWithImg item={itemUmamusume} />
+            <MenuWithImg collection="umamusumes" item={itemUmamusume} />
           </MenuItem>
         ))}
         <MenuItem />

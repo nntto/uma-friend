@@ -1,5 +1,6 @@
 import { FormControl, MenuItem } from "@material-ui/core";
 import { Post } from "datas";
+import { imageSource } from "datas/imageSource";
 import { Support } from "datas/support";
 import produce from "immer";
 import { ImDiamonds } from "react-icons/im";
@@ -34,7 +35,7 @@ export default ({
     <>
       <div className={classes.parent}>
         <img
-          src={support.imgUrl}
+          src={imageSource.supportCards[support.id]}
           alt=""
           width={sizes.supportImg.width}
           height={sizes.supportImg.height}

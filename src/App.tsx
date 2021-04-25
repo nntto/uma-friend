@@ -8,6 +8,7 @@ import { fetchDbData } from "functions";
 import { Factor, Umamusume, Support, constantsKeys, posts, Post } from "datas";
 import PostTiles from "components/PostTiles";
 import Upload from "components/Upload";
+import CreateImageSource from "datas/CreateImageSource";
 
 const useStyles = makeStyles({
   root: {

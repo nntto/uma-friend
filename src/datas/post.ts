@@ -23,8 +23,6 @@ export const initialPost: Post = {
     umamusume: {
       id: "undefined",
       name: "指定なし",
-      imgUrl:
-        "https://firebasestorage.googleapis.com/v0/b/uma-friend.appspot.com/o/umamusume%2Fundefined.png?alt=media&token=d99c7d77-9ca4-4aea-8c99-9608fd7c295c",
     },
     factorIds: {
       status: undefined,
@@ -46,8 +44,6 @@ export const initialPost: Post = {
     umamusume: {
       id: "undefined",
       name: "指定なし",
-      imgUrl:
-        "https://firebasestorage.googleapis.com/v0/b/uma-friend.appspot.com/o/umamusume%2Fundefined.png?alt=media&token=d99c7d77-9ca4-4aea-8c99-9608fd7c295c",
     },
     factorIds: {
       status: undefined,
@@ -69,8 +65,6 @@ export const initialPost: Post = {
     umamusume: {
       id: "undefined",
       name: "指定なし",
-      imgUrl:
-        "https://firebasestorage.googleapis.com/v0/b/uma-friend.appspot.com/o/umamusume%2Fundefined.png?alt=media&token=d99c7d77-9ca4-4aea-8c99-9608fd7c295c",
     },
     factorIds: {
       status: undefined,
@@ -91,8 +85,6 @@ export const initialPost: Post = {
   support: {
     id: "undefined",
     name: "未選択",
-    imgUrl:
-      "https://firebasestorage.googleapis.com/v0/b/uma-friend.appspot.com/o/umamusume%2Fundefined.png?alt=media&token=d99c7d77-9ca4-4aea-8c99-9608fd7c295c",
   },
   stack: 4,
   level: 50,
@@ -106,8 +98,6 @@ export const posts: Post[] = [
       umamusume: {
         id: "undefined",
         name: "指定なし",
-        imgUrl:
-          "https://firebasestorage.googleapis.com/v0/b/uma-friend.appspot.com/o/umamusume%2Fundefined.png?alt=media&token=d99c7d77-9ca4-4aea-8c99-9608fd7c295c",
       },
       factorIds: {
         status: undefined,
@@ -129,8 +119,6 @@ export const posts: Post[] = [
       umamusume: {
         id: "undefined",
         name: "指定なし",
-        imgUrl:
-          "https://firebasestorage.googleapis.com/v0/b/uma-friend.appspot.com/o/umamusume%2Fundefined.png?alt=media&token=d99c7d77-9ca4-4aea-8c99-9608fd7c295c",
       },
       factorIds: {
         status: undefined,
@@ -152,8 +140,6 @@ export const posts: Post[] = [
       umamusume: {
         id: "undefined",
         name: "指定なし",
-        imgUrl:
-          "https://firebasestorage.googleapis.com/v0/b/uma-friend.appspot.com/o/umamusume%2Fundefined.png?alt=media&token=d99c7d77-9ca4-4aea-8c99-9608fd7c295c",
       },
       factorIds: {
         status: undefined,
@@ -174,8 +160,6 @@ export const posts: Post[] = [
     support: {
       id: "undefined",
       name: "未選択",
-      imgUrl:
-        "https://firebasestorage.googleapis.com/v0/b/uma-friend.appspot.com/o/umamusume%2Fundefined.png?alt=media&token=d99c7d77-9ca4-4aea-8c99-9608fd7c295c",
     },
     stack: 1,
     level: 1,
@@ -188,8 +172,6 @@ export const posts: Post[] = [
       umamusume: {
         id: "mesiromaceen_endofskt",
         name: "メジロマックイーン（エンドオブスカイ）",
-        imgUrl:
-          "https://img.game8.jp/5700653/5302926d33c34f2aa38202e14c5fddef.png/original",
       },
       factorIds: {
         status: "speed",
@@ -217,8 +199,6 @@ export const posts: Post[] = [
       umamusume: {
         id: "mesiromaceen_endofskt",
         name: "メジロマックイーン（エンドオブスカイ）",
-        imgUrl:
-          "https://img.game8.jp/5700653/5302926d33c34f2aa38202e14c5fddef.png/original",
       },
       factorIds: {
         status: "speed",
@@ -245,8 +225,6 @@ export const posts: Post[] = [
       umamusume: {
         id: "tokaiteioh_ beyondthehorizon",
         name: "トウカイテイオー（ビヨンドザホライズン）",
-        imgUrl:
-          "https://img.game8.jp/5700654/0f2b1df09ee8c849b9f4c61d5c0051df.png/show",
       },
       factorIds: {
         status: "speed",
@@ -285,8 +263,6 @@ export const posts: Post[] = [
     support: {
       id: "kitasan_brack",
       name: "キタサンブラック",
-      imgUrl:
-        "https://img.game8.jp/5701687/8216c22081b5d75ce8b565ee5f7d0efd.png/original",
     },
     stack: 4,
     level: 50,
