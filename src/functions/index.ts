@@ -1,6 +1,6 @@
 import { Post } from "datas/post";
 import { constants, constantValues } from "datas/constants";
-import { db, getImgUrl } from "firebaseDb";
+import { db } from "firebaseDb";
 
 export const upload = (collection: string, record: Post) => {
   const ref = db.collection(collection);
@@ -30,21 +30,7 @@ export const fetchDbData = (
   ref.get().then((snapshot) => {
     const newState: any[] = [];
     snapshot.forEach((doc) => {
-      const id = doc.data().id;
-      console.log();
-
-      if (collection === "umamusumes" || collection === "supportCards") {
-        const promise = () =>
-          new Promise((resolve, reject) => {
-            const imgUrl = getImgUrl(collection, id);
-            resolve(imgUrl);
-          });
-        promise().then((imgUrl) => {
-          newState.push({ ...doc.data(), imgUrl });
-        });
-      } else {
-        newState.push(doc.data());
-      }
+      newState.push(doc.data());
     });
     setState(newState);
   });
