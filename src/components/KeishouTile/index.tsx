@@ -51,9 +51,9 @@ export default ({
           <Grid
             item
             key="select-umamusume"
-            xs={6}
-            md={1}
-            lg={1}
+            xs={12}
+            md={2}
+            lg={2}
             style={{ textAlign: "center" }}
           >
             <SelectUmamusume
@@ -61,15 +61,6 @@ export default ({
               umamusume={umamusume}
               handleChange={handleChange}
             />
-          </Grid>
-          <Grid
-            item
-            key="select-factors"
-            xs={6}
-            md={2}
-            lg={2}
-            style={{ textAlign: "center" }}
-          >
             <SelectFactors
               factorIds={factorIds}
               dbFactors={dbFactors}
