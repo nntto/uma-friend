@@ -30,7 +30,7 @@ export const useStyles = makeStyles({
   },
   level: {
     position: "relative",
-    bottom: "60px",
+    bottom: "61px",
     left: "100px",
     fontSize: sizes[6],
     zIndex: 1,

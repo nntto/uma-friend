@@ -1,15 +1,8 @@
 export type Support = {
   id: string;
   name: string;
+  rarity?: "ssr" | "sr" | "r";
+  type?: string;
 };
 
-export const supports: Support[] = [
-  {
-    id: "kitasan_brack",
-    name: "キタサンブラック",
-  },
-  {
-    id: "tokai_teioh",
-    name: "トウカイテイオー",
-  },
-];
+export const supports: Support[] = [];

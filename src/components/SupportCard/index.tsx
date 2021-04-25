@@ -20,17 +20,6 @@ export default ({
 }) => {
   const classes = useStyles();
 
-  const handleChange = (event: any, index: string) => {
-    if (!setPost) throw new Error("cannot update");
-
-    setPost((state) =>
-      produce(state, (draftState) => {
-        const value = event.target.value;
-        if (index === "stack" || index === "level") draftState[index] = value;
-      })
-    );
-  };
-
   return (
     <>
       <div className={classes.parent}>
@@ -47,34 +36,12 @@ export default ({
             name="select-rating"
             value={stack}
             max={4}
-            readOnly={!setPost}
-            onChange={(e) => handleChange(e, "stack")}
+            readOnly
             icon={<ImDiamonds className={classes.icon} />}
             size="small"
           />
         </div>
-        <div className={classes.level}>
-          {setPost ? (
-            <FormControl>
-              <StyledSelect
-                labelId="select-level"
-                id="select-level"
-                value={level}
-                onChange={(e) => handleChange(e, "level")}
-              >
-                {[...Array(50)]
-                  .map((_, i) => i + 1)
-                  .map((number) => (
-                    <MenuItem key={number} value={number}>
-                      {`Lv${number}`}
-                    </MenuItem>
-                  ))}
-              </StyledSelect>
-            </FormControl>
-          ) : (
-            `Lv${level}`
-          )}
-        </div>
+        <div className={classes.level}>{`Lv${level}`}</div>
 
         <div className={classes.box} />
       </div>

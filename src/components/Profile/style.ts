@@ -22,6 +22,10 @@ export default makeStyles({
   text: {
     margin: "0 20px 0",
   },
+  flexEnd: {
+    display: "flex",
+    alignItems: "flex-end",
+  },
   formControl: {},
   sideBySide: {
     display: "inline-block",
