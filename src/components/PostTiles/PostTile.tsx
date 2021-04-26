@@ -19,12 +19,11 @@ export default ({
   const dbUmamusumes = useSelector<Db, Umamusume[]>(
     (state) => state.umamusumes
   );
-  const dbFactors = useSelector<Db, Factor[]>((state) => state.factors);
 
   const setKeishoUmamusume = (momId: Moms) =>
     setPost
       ? (
-          value: string | string[] | number,
+          value: string | string[] | number | Factor | Factor[],
           index: string,
           factorType?: FactorTypes,
           factorId?: string
@@ -42,32 +41,13 @@ export default ({
                   factorType === "appropriate" ||
                   factorType === "uniqueSkill"
                 ) {
-                  draftState[momId].factorIds[factorType] = value as string;
                   const star = draftState[momId].factors[factorType]?.star;
-                  const dbfactor = dbFactors.find((f) => f.id === value);
-                  if (dbfactor !== undefined) {
-                    draftState[momId].factors[factorType] = {
-                      ...dbfactor,
-                      star,
-                    };
-                  }
+                  draftState[momId].factors[factorType] = {
+                    ...(value as Factor),
+                    star,
+                  };
                 } else {
-                  const newFactorIds = value as string[];
-                  const beforeFactorIds =
-                    draftState[momId].factorIds[factorType];
-                  const addIds = [...newFactorIds].filter(
-                    (e) => !beforeFactorIds.includes(e)
-                  );
-
-                  draftState[momId].factorIds[factorType] = newFactorIds;
-                  draftState[momId].factors[factorType].filter((e) =>
-                    newFactorIds.includes(e.id)
-                  );
-                  addIds.forEach((e) => {
-                    const dbFactor = dbFactors.find((f) => f.id === e);
-                    if (dbFactor !== undefined)
-                      draftState[momId].factors[factorType].push(dbFactor);
-                  });
+                  draftState[momId].factors[factorType] = value as Factor[];
                 }
               } else if (index === "star" && factorId && factorType) {
                 if (

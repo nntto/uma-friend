@@ -42,7 +42,12 @@ export default ({
     factorId?: string
   ) => {
     if (!setKeishoUmamusume) throw new Error("cannot update");
-    setKeishoUmamusume(event.target.value, index, factorType, factorId);
+    console.log(event);
+    if (index === "factor") {
+      setKeishoUmamusume(event, index, factorType, factorId);
+    } else {
+      setKeishoUmamusume(event.target.value, index, factorType, factorId);
+    }
   };
 
   return (

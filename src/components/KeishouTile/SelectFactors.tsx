@@ -1,4 +1,12 @@
-import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
+/* eslint-disable react/jsx-props-no-spreading */
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@material-ui/core";
+import { Autocomplete } from "@material-ui/lab";
 import { Factor, factorDatas, FactorTypes, keishoUmamusume } from "datas";
 import useStyles from "./style";
 
@@ -25,12 +33,14 @@ export default ({
   ) => void;
 }) => {
   const classes = useStyles();
+
   return (
     <>
       {Object.keys(factorIds).map((key) => {
         const factorType = key as FactorTypes;
         const isMulti = factorType === "G1" || factorType === "skill";
-        const nullValue = isMulti ? [] : "";
+
+        const nullValue = isMulti ? [{}] : {};
         const typedFactors = [] as Factor[];
         if (isMulti) {
           typedFactors.push(...((factors[factorType] as Factor[]) ?? []));
@@ -38,35 +48,30 @@ export default ({
           typedFactors.push(factors[factorType] as Factor);
         }
         return (
-          <div className={classes.selectFactorsBox}>
-            <FormControl
-              key={`seceltor-factor-${factorType}`}
-              className={classes.seceltFactorForm}
-            >
-              <Select
-                multiple={isMulti}
-                labelId={`selector-factor-${factorType}`}
-                id={`selector-factor-${factorType}`}
-                displayEmpty
-                value={
-                  factorIds[factorType] ? factorIds[factorType] : nullValue
-                }
-                onChange={(e) => handleChange(e, "factor", factorType)}
-                renderValue={() => factorDatas[factorType]}
-                disableUnderline
-              >
-                <MenuItem value="" disabled>
-                  {factorDatas[factorType]}
-                </MenuItem>
-                {dbFactors
-                  .filter((item) => item.type === factorType)
-                  .map((itemFactor: Factor) => (
-                    <MenuItem key={itemFactor.id} value={itemFactor.id}>
-                      {itemFactor.name}
-                    </MenuItem>
-                  ))}
-              </Select>
-            </FormControl>
+          <div>
+            <Autocomplete
+              className={classes.selectFactorForm}
+              multiple={isMulti}
+              id={`selector-factor-${factorType}`}
+              options={dbFactors.filter((item) => item.type === factorType)}
+              onChange={(e, values) =>
+                handleChange(values, "factor", factorType)
+              }
+              autoHighlight
+              renderOption={(option) => <>{option.name}</>}
+              getOptionLabel={(option) => option.name}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label={factorDatas[factorType]}
+                  variant="outlined"
+                  inputProps={{
+                    ...params.inputProps,
+                    autoComplete: "new-password", // disable autocomplete and autofill
+                  }}
+                />
+              )}
+            />
 
             <div>
               {typedFactors.map((item) => {
@@ -89,7 +94,7 @@ export default ({
                       }
                       disableUnderline
                     >
-                      <MenuItem value="" disabled>
+                      <MenuItem value={0} disabled>
                         {item.name}
                       </MenuItem>
                       {[1, 2, 3].map((i) => (

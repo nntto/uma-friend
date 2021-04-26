@@ -24,7 +24,7 @@ export default makeStyles({
   },
   selectFactorsBox: {},
   selectStarForm: { width: "200px", margin: "0 10px" },
-  seceltFactorForm: { minWidth: "100px" },
+  selectFactorForm: { width: "300px", textAlign: "center", margin: "5px auto" },
 
   sideBySide: {
     display: "inline-block",

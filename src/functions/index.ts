@@ -21,7 +21,6 @@ export const fetchDbData = (
   ref.get().then((snapshot) => {
     const newState: any[] = [];
     snapshot.forEach((doc) => {
-      console.log(doc.data());
       if (collection === "posts") {
         newState.push({
           ...doc.data(),
