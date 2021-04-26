@@ -1,25 +1,16 @@
 import { Post } from "datas/post";
-import { constants, constantValues } from "datas/constants";
+import { constantValues } from "datas/constants";
 import { db } from "firebaseDb";
+import firebase from "firebase/app";
 
-export const upload = (collection: string, record: Post) => {
-  const ref = db.collection(collection);
-  switch (collection) {
-    case constants.posts: {
-      const docs: Required<Post> = {
-        ...record,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      };
+export const upload = (record: Post) => {
+  const ref = db.collection("posts");
+  const docs: Required<Post> = {
+    ...record,
+    updatedAt: firebase.firestore.Timestamp.now(),
+  };
 
-      ref.doc(docs.trainerId).set(docs);
-      return;
-    }
-
-    default: {
-      throw new Error("specify target collection");
-    }
-  }
+  ref.doc(docs.trainerId).set(docs);
 };
 
 export const fetchDbData = (
@@ -30,7 +21,15 @@ export const fetchDbData = (
   ref.get().then((snapshot) => {
     const newState: any[] = [];
     snapshot.forEach((doc) => {
-      newState.push(doc.data());
+      console.log(doc.data());
+      if (collection === "posts") {
+        newState.push({
+          ...doc.data(),
+          updatedAt: doc.data().nanoseconds,
+        });
+      } else {
+        newState.push(doc.data());
+      }
     });
     setState(newState);
   });

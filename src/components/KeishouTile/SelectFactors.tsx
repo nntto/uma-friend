@@ -52,16 +52,7 @@ export default ({
                   factorIds[factorType] ? factorIds[factorType] : nullValue
                 }
                 onChange={(e) => handleChange(e, "factor", factorType)}
-                renderValue={
-                  isMulti
-                    ? (selected) => {
-                        if ((selected as string[]).length === 0) {
-                          return factorDatas[factorType];
-                        }
-                        return (selected as string[]).join(", ");
-                      }
-                    : undefined
-                }
+                renderValue={() => factorDatas[factorType]}
                 disableUnderline
               >
                 <MenuItem value="" disabled>
@@ -77,37 +68,40 @@ export default ({
               </Select>
             </FormControl>
 
-            {typedFactors.map((item) => {
-              return (
-                <FormControl
-                  key={`selector-star-${item.id}`}
-                  className={classes.selectStarForm}
-                >
-                  <InputLabel shrink id={`selector-star-${item.id}`}>
-                    {item.name}
-                  </InputLabel>
-                  <Select
-                    labelWidth={10}
-                    labelId={`selector-star-${item.id}`}
-                    id={`selector-star-${item.id}`}
-                    value={item.star ?? 0}
-                    onChange={(e) =>
-                      handleChange(e, "star", factorType, item.id)
-                    }
-                    disableUnderline
+            <div>
+              {typedFactors.map((item) => {
+                return (
+                  <FormControl
+                    key={`selector-star-${item.id}`}
+                    className={classes.selectStarForm}
                   >
-                    <MenuItem value="" disabled>
+                    <InputLabel shrink id={`selector-star-${item.id}`}>
                       {item.name}
-                    </MenuItem>
-                    {[1, 2, 3].map((i) => (
-                      <MenuItem key={i} value={i}>
-                        ☆{i}
+                    </InputLabel>
+                    <Select
+                      labelWidth={10}
+                      variant="outlined"
+                      labelId={`selector-star-${item.id}`}
+                      id={`selector-star-${item.id}`}
+                      value={item.star ?? 0}
+                      onChange={(e) =>
+                        handleChange(e, "star", factorType, item.id)
+                      }
+                      disableUnderline
+                    >
+                      <MenuItem value="" disabled>
+                        {item.name}
                       </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              );
-            })}
+                      {[1, 2, 3].map((i) => (
+                        <MenuItem key={i} value={i}>
+                          ☆{i}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                );
+              })}
+            </div>
           </div>
         );
       })}

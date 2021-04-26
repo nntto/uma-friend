@@ -4,13 +4,7 @@ import { Post } from "datas";
 import produce from "immer";
 import { useSelector } from "react-redux";
 import { Db } from "features";
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-} from "@material-ui/core";
+import { FormControl, MenuItem, Select, TextField } from "@material-ui/core";
 import MenuItemWithImg from "components/atom/MenuItemWithImg";
 import { useState } from "react";
 import useStyles from "./style";
@@ -126,12 +120,7 @@ export default ({
               </FormControl>
             </div>
           ) : null}
-          <SupportCard
-            setPost={setPost}
-            support={support}
-            stack={stack}
-            level={level}
-          />
+          <SupportCard support={support} stack={stack} level={level} />
           <FormControl>
             <Select
               labelId="select-stack"

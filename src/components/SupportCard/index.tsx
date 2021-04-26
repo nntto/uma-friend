@@ -1,22 +1,18 @@
-import { FormControl, MenuItem } from "@material-ui/core";
 import { Post } from "datas";
 import { imageSource } from "datas/imageSource";
 import { Support } from "datas/support";
-import produce from "immer";
 import { ImDiamonds } from "react-icons/im";
 import { sizes } from "style/theme";
-import { useStyles, StyledRating, StyledSelect } from "./style";
+import { useStyles, StyledRating } from "./style";
 
 export default ({
   support,
   stack,
   level,
-  setPost,
 }: {
   support: Support;
-  stack: 1 | 2 | 3 | 4;
+  stack: 0 | 1 | 2 | 3 | 4;
   level: number;
-  setPost?: React.Dispatch<React.SetStateAction<Post>> | undefined;
 }) => {
   const classes = useStyles();
 

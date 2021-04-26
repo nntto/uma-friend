@@ -1,3 +1,4 @@
+import firebase from "firebase/app";
 import { keishoUmamusume } from "./keishoUmamusume";
 import { Support } from "./support";
 
@@ -11,8 +12,7 @@ export type Post = {
   level: number;
   trainerId: string;
   name: string;
-  createdAt?: Date;
-  updatedAt?: Date;
+  updatedAt?: firebase.firestore.FieldValue | Date;
 };
 
 export const moms = ["mom", "grandMom1", "grandMom2"] as const;

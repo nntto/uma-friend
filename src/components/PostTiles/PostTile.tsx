@@ -84,8 +84,8 @@ export default ({
                     momId
                   ].factors[factorType].map((item) =>
                     item.id === factorId
-                      ? item
-                      : { ...item, star: value as 1 | 2 | 3 }
+                      ? { ...item, star: value as 1 | 2 | 3 }
+                      : item
                   );
                 }
               } else {
@@ -95,6 +95,7 @@ export default ({
           );
         }
       : undefined;
+  console.log(post);
   return (
     <>
       <Profile
@@ -141,6 +142,7 @@ export default ({
         umamusume={post.grandMom2.umamusume}
         setKeishoUmamusume={setKeishoUmamusume("grandMom2")}
       />
+      <p>更新日時:{post.updatedAt}</p>
     </>
   );
 };

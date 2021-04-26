@@ -5,10 +5,9 @@ import { useDispatch } from "react-redux";
 import { dbSlice } from "features";
 import { useEffect, useState } from "react";
 import { fetchDbData } from "functions";
-import { Factor, Umamusume, Support, constantsKeys, posts, Post } from "datas";
+import { Factor, Umamusume, Support, constantsKeys, Post } from "datas";
 import PostTiles from "components/PostTiles";
 import Upload from "components/Upload";
-import CreateImageSource from "datas/CreateImageSource";
 
 const useStyles = makeStyles({
   root: {
@@ -24,6 +23,7 @@ const App: React.FC = () => {
   const [factors, setFactors] = useState<Factor[]>([]);
   const [umamusumes, setUmamusumes] = useState<Umamusume[]>([]);
   const [supports, setSupports] = useState<Support[]>([]);
+  const [posts, setPosts] = useState<Post[]>([]);
 
   const dispatch = useDispatch();
   const { setDbData } = dbSlice.actions;
@@ -44,12 +44,17 @@ const App: React.FC = () => {
       key: "supports",
       value: supports,
     });
-  }, [factors, umamusumes, supports]);
+    setData({
+      key: "posts",
+      value: posts,
+    });
+  }, [factors, umamusumes, supports, posts]);
 
   useEffect(() => {
     fetchDbData("factors", setFactors);
     fetchDbData("umamusumes", setUmamusumes);
     fetchDbData("supportCards", setSupports);
+    fetchDbData("posts", setPosts);
   }, []);
   return (
     <>

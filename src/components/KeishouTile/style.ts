@@ -22,9 +22,9 @@ export default makeStyles({
   text: {
     margin: "0 20px 0",
   },
-  selectFactorsBox: { display: "flex", alignItems: "flex-end" },
-  selectStarForm: { width: "80px" },
-  seceltFactorForm: { width: "140px" },
+  selectFactorsBox: {},
+  selectStarForm: { width: "200px", margin: "0 10px" },
+  seceltFactorForm: { minWidth: "100px" },
 
   sideBySide: {
     display: "inline-block",

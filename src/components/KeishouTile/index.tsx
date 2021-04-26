@@ -53,8 +53,8 @@ export default ({
             item
             key="select-umamusume"
             xs={12}
-            md={2}
-            lg={2}
+            md={12}
+            lg={12}
             style={{ textAlign: "center" }}
           >
             <SelectUmamusume
@@ -90,8 +90,8 @@ export default ({
         item
         key="factors"
         xs={12}
-        md={9}
-        lg={9}
+        md={setKeishoUmamusume ? 12 : 9}
+        lg={setKeishoUmamusume ? 12 : 9}
         style={{ textAlign: "center" }}
       >
         <FactorTiles factors={factors} />
