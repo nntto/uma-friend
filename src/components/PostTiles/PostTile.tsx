@@ -23,18 +23,16 @@ export default ({
   const setKeishoUmamusume = (momId: Moms) =>
     setPost
       ? (
-          value: string | string[] | number | Factor | Factor[],
+          rowValue: string | string[] | number | Factor | Factor[] | Umamusume,
           index: string,
           factorType?: FactorTypes,
           factorId?: string
         ) => {
+          const value = rowValue === null ? undefined : rowValue;
           setPost((state) =>
             produce(state, (draftState) => {
               if (index === "umamusume") {
-                draftState[momId].umamusumeId = value as string;
-                draftState[momId].umamusume = dbUmamusumes.find(
-                  (finder) => finder.id === value
-                ) as Umamusume;
+                draftState[momId].umamusume = value as Umamusume;
               } else if (index === "factor" && factorType) {
                 if (
                   factorType === "status" ||

@@ -33,7 +33,8 @@ export default makeStyles({
     height: "4rem",
   },
   select: {
-    width: sizes.supportImg.width,
+    width: "300px",
+    margin: "0 auto",
   },
   icon: {
     size: sizes[10],

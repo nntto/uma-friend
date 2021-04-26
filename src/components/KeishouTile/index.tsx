@@ -43,10 +43,12 @@ export default ({
   ) => {
     if (!setKeishoUmamusume) throw new Error("cannot update");
     console.log(event);
-    if (index === "factor") {
+    if (index === "factor" || index === "umamusume") {
       setKeishoUmamusume(event, index, factorType, factorId);
-    } else {
+    } else if (index === "star") {
       setKeishoUmamusume(event.target.value, index, factorType, factorId);
+    } else {
+      throw new Error(`unexpected index = ${index}`);
     }
   };
 

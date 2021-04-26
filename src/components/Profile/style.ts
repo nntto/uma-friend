@@ -39,4 +39,7 @@ export default makeStyles({
   icon: {
     size: sizes[10],
   },
+  selectBox: {
+    marginRight: "10px",
+  },
 });

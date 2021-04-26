@@ -8,7 +8,7 @@ export type Post = {
   grandMom2: keishoUmamusume;
   supportId: string;
   support: Support;
-  stack: 1 | 2 | 3 | 4;
+  stack: 0 | 1 | 2 | 3 | 4;
   level: number;
   trainerId: string;
   name: string;

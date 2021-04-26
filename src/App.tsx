@@ -5,7 +5,16 @@ import { useDispatch } from "react-redux";
 import { dbSlice } from "features";
 import { useEffect, useState } from "react";
 import { fetchDbData } from "functions";
-import { Factor, Umamusume, Support, constantsKeys, Post } from "datas";
+import {
+  Factor,
+  Umamusume,
+  Support,
+  constantsKeys,
+  Post,
+  factors,
+  supports,
+  umamusumes,
+} from "datas";
 import PostTiles from "components/PostTiles";
 import Upload from "components/Upload";
 
@@ -20,9 +29,9 @@ const useStyles = makeStyles({
 const App: React.FC = () => {
   const classes = useStyles();
 
-  const [factors, setFactors] = useState<Factor[]>([]);
-  const [umamusumes, setUmamusumes] = useState<Umamusume[]>([]);
-  const [supports, setSupports] = useState<Support[]>([]);
+  // const [factors, setFactors] = useState<Factor[]>([]);
+  // const [umamusumes, setUmamusumes] = useState<Umamusume[]>([]);
+  // const [supports, setSupports] = useState<Support[]>([]);
   const [posts, setPosts] = useState<Post[]>([]);
 
   const dispatch = useDispatch();
@@ -51,9 +60,9 @@ const App: React.FC = () => {
   }, [factors, umamusumes, supports, posts]);
 
   useEffect(() => {
-    fetchDbData("factors", setFactors);
-    fetchDbData("umamusumes", setUmamusumes);
-    fetchDbData("supportCards", setSupports);
+    // fetchDbData("factors", setFactors);
+    // fetchDbData("umamusumes", setUmamusumes);
+    // fetchDbData("supportCards", setSupports);
     fetchDbData("posts", setPosts);
   }, []);
   return (

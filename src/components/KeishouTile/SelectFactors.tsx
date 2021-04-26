@@ -40,7 +40,6 @@ export default ({
         const factorType = key as FactorTypes;
         const isMulti = factorType === "G1" || factorType === "skill";
 
-        const nullValue = isMulti ? [{}] : {};
         const typedFactors = [] as Factor[];
         if (isMulti) {
           typedFactors.push(...((factors[factorType] as Factor[]) ?? []));

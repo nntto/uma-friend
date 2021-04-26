@@ -1,7 +1,8 @@
-import { FormControl, MenuItem, Select } from "@material-ui/core";
+import { FormControl, MenuItem, Select, TextField } from "@material-ui/core";
 import { Umamusume } from "datas";
 import MenuWithImg from "components/atom/MenuItemWithImg";
 import { imageSource } from "datas/imageSource";
+import { Autocomplete } from "@material-ui/lab";
 import useStyles from "./style";
 
 export default ({
@@ -26,16 +27,28 @@ export default ({
 }) => {
   const classes = useStyles();
   return (
-    <FormControl>
-      <Select
-        className={classes.select}
-        labelId="select-support"
-        id="select-support"
-        defaultValue="undefined"
-        value={umamusume.id ? umamusume.id : ""}
-        onChange={(e) => handleChange(e, "umamusume")}
-        disableUnderline
-        renderValue={() => (
+    <Autocomplete
+      className={classes.select}
+      id="select-support"
+      options={dbUmamusumes as Umamusume[]}
+      onChange={(e, values) => handleChange(values, "umamusume")}
+      autoHighlight
+      renderOption={(option) => (
+        <MenuWithImg collection="umamusumes" item={option} />
+      )}
+      getOptionLabel={(option) => option.name}
+      renderInput={(params) => (
+        <>
+          <TextField
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...params}
+            label="育成ウマ娘"
+            variant="outlined"
+            inputProps={{
+              ...params.inputProps,
+              autoComplete: "new-password", // disable autocomplete and autofill
+            }}
+          />
           <img
             src={imageSource.umamusumes[umamusume.id]}
             alt=""
@@ -45,15 +58,8 @@ export default ({
               margin: "5px 0 5px",
             }}
           />
-        )}
-      >
-        {dbUmamusumes.map((itemUmamusume: Umamusume) => (
-          <MenuItem key={itemUmamusume.id} value={itemUmamusume.id}>
-            <MenuWithImg collection="umamusumes" item={itemUmamusume} />
-          </MenuItem>
-        ))}
-        <MenuItem />
-      </Select>
-    </FormControl>
+        </>
+      )}
+    />
   );
 };

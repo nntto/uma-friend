@@ -7,6 +7,7 @@ import { Db } from "features";
 import { FormControl, MenuItem, Select, TextField } from "@material-ui/core";
 import MenuItemWithImg from "components/atom/MenuItemWithImg";
 import { useState } from "react";
+import { Autocomplete } from "@material-ui/lab";
 import useStyles from "./style";
 
 export default ({
@@ -20,7 +21,7 @@ export default ({
   name: string;
   trainerId: string;
   support: Support;
-  stack: 1 | 2 | 3 | 4;
+  stack: 0 | 1 | 2 | 3 | 4;
   level: number;
   setPost?: React.Dispatch<React.SetStateAction<Post>> | undefined;
 }) => {
@@ -32,16 +33,14 @@ export default ({
     if (!setPost) throw new Error("cannot update");
     setPost((state) =>
       produce(state, (draftState) => {
-        const value = event.target.value;
         if (index === "name" || index === "trainerId") {
-          draftState[index] = value;
+          draftState[index] = event.target.value as string;
         } else if (index === "support") {
-          draftState.supportId = value;
-          draftState.support = dbSupport.find(
-            (finder) => finder.id === value
-          ) as Support;
-        } else if (index === "stack" || index === "level") {
-          draftState[index] = value;
+          draftState.support = event as Support;
+        } else if (index === "stack") {
+          draftState.stack = event.target.value as 0 | 1 | 2 | 3 | 4;
+        } else if (index === "level") {
+          draftState.level = event.target.value as number;
         } else {
           throw new Error(`cannot update. index = ${index}`);
         }
@@ -82,11 +81,12 @@ export default ({
         <div className={classes.supportBox}>
           {setPost ? (
             <div className={classes.flexEnd}>
-              <FormControl>
+              <FormControl className={classes.selectBox}>
                 <Select
                   labelId="select-rarity"
                   id="select-rarity"
                   value={rarity}
+                  variant="outlined"
                   onChange={(e) => setRarity(e.target.value as string)}
                 >
                   {["ssr", "sr", "r"].map((i) => (
@@ -96,33 +96,40 @@ export default ({
                   ))}
                 </Select>
               </FormControl>
-              <FormControl className={classes.formControl}>
-                <Select
-                  className={classes.select}
-                  labelId="select-support"
-                  id="select-support"
-                  value={support.id ?? "undefine"}
-                  onChange={(e) => handleChange(e, "support")}
-                  renderValue={() => <p>{support.name}</p>}
-                >
-                  {dbSupport
-                    .filter((i) => i.rarity === rarity)
-                    .map((itemSupport: Support) => (
-                      <MenuItem key={itemSupport.id} value={itemSupport.id}>
-                        <MenuItemWithImg
-                          collection="supportCards"
-                          item={itemSupport}
-                        />
-                      </MenuItem>
-                    ))}
-                  <MenuItem />
-                </Select>
-              </FormControl>
+              <Autocomplete
+                className={classes.selectBox}
+                id="select-support"
+                style={{ width: "200px" }}
+                options={
+                  dbSupport.filter((i) => i.rarity === rarity) as Support[]
+                }
+                onChange={(e, values) => handleChange(values, "support")}
+                autoHighlight
+                renderOption={(option) => (
+                  <MenuItemWithImg collection="supportCards" item={option} />
+                )}
+                getOptionLabel={(option) => option.name}
+                renderInput={(params) => (
+                  <>
+                    <TextField
+                      // eslint-disable-next-line react/jsx-props-no-spreading
+                      {...params}
+                      label="サポートカード"
+                      variant="outlined"
+                      inputProps={{
+                        ...params.inputProps,
+                        autoComplete: "new-password", // disable autocomplete and autofill
+                      }}
+                    />
+                  </>
+                )}
+              />
             </div>
           ) : null}
           <SupportCard support={support} stack={stack} level={level} />
-          <FormControl>
+          <FormControl className={classes.selectBox}>
             <Select
+              variant="outlined"
               labelId="select-stack"
               id="select-stack"
               value={stack}
@@ -137,8 +144,9 @@ export default ({
                 ))}
             </Select>
           </FormControl>
-          <FormControl>
+          <FormControl className={classes.selectBox}>
             <Select
+              variant="outlined"
               labelId="select-level"
               id="select-level"
               value={level}
