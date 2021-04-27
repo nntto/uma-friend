@@ -261,7 +261,7 @@ export const posts: Post[] = [
     },
     supportId: "kitasan_black",
     support: {
-      id: "kitasan_brack",
+      id: "kitasan_black",
       name: "キタサンブラック",
     },
     stack: 4,

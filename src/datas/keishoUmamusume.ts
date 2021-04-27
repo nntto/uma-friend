@@ -1,4 +1,5 @@
 import { Umamusume, Factor } from "datas";
+import { Factors } from "./factors";
 
 export type keishoUmamusume = {
   umamusumeId: string;
@@ -10,11 +11,5 @@ export type keishoUmamusume = {
     G1: string[];
     skill: string[];
   };
-  factors: {
-    status: Factor | undefined;
-    appropriate: Factor | undefined;
-    uniqueSkill: Factor | undefined;
-    G1: Factor[];
-    skill: Factor[];
-  };
+  factors: Factors;
 };

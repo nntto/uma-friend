@@ -11,8 +11,22 @@ export type Factor = {
   name: string;
   type: FactorTypes;
   desc: string;
-  star?: 1 | 2 | 3;
+  star?: 0 | 1 | 2 | 3;
   checked?: boolean;
+};
+export type Factors = {
+  status: Factor | undefined;
+  appropriate: Factor | undefined;
+  uniqueSkill: Factor | undefined;
+  G1: Factor[];
+  skill: Factor[];
+};
+export const iniFactor = {
+  status: undefined,
+  appropriate: undefined,
+  uniqueSkill: undefined,
+  G1: [],
+  skill: [],
 };
 export const factors: Factor[] = [
   {
