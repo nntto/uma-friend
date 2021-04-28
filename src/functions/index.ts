@@ -17,7 +17,7 @@ export const fetchDbData = (
   collection: constantValues,
   setState: React.Dispatch<React.SetStateAction<any[]>>
 ) => {
-  const ref = db.collection(collection);
+  const ref = db.collection(collection).orderBy("updatedAt", "desc").limit(30);
   ref.get().then((snapshot) => {
     const newState: any[] = [];
     snapshot.forEach((doc) => {

@@ -4,10 +4,12 @@ import { sizes } from "style/theme";
 export default makeStyles({
   root: {},
   card: {
-    margin: "0 5px 0",
+    display: "inline-block",
+    margin: "10px",
     position: "relative",
     borderRadius: "5px",
     boxShadow: "1px 4px 0 rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)",
+    width: "300px",
   },
   name: {
     padding: "7px 5px 7px",
