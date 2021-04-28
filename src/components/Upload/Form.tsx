@@ -12,7 +12,7 @@ import useStyles from "./style";
 import * as validation from "./validation";
 import StyledAlert from "./Form/Alert";
 
-export default ({ handleClose }: { handleClose: () => void }) => {
+export default () => {
   const {
     handleSubmit,
     formState: { errors, isValid },

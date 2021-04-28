@@ -39,7 +39,7 @@ export default () => {
         }}
       >
         <div>
-          <UploadForm handleClose={handleClose} />
+          <UploadForm />
         </div>
       </Popover>
     </>

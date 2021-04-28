@@ -1,11 +1,7 @@
-import { Grid } from "@material-ui/core";
 import { factorDatas, FactorTypes, keishoUmamusume } from "datas";
 import FactorTile from "./FactorTile";
-import useStyles from "./style";
 
 export default ({ factors }: { factors: keishoUmamusume["factors"] }) => {
-  const classes = useStyles();
-
   return (
     <div>
       {Object.keys(factorDatas).map((key) => {

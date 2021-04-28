@@ -18,7 +18,6 @@ export default ({
   item: Umamusume | Support;
 }) => {
   const classes = useStyle();
-  const src = imageSource[collection][item.id];
   return (
     <>
       <p className={classes.sideBySide}>

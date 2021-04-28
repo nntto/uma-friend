@@ -3,10 +3,6 @@ import { Post } from "datas/post";
 import PostTile from "./PostTile";
 
 export default ({ posts }: { posts: Post[] }) => {
-  const doublePosts: Post[] = [...posts, ...posts];
-  const quadruplePosts: Post[] = [...doublePosts, ...doublePosts];
-  const octuplePosts: Post[] = [...quadruplePosts, ...quadruplePosts];
-
   return (
     <>
       <Grid container spacing={3}>

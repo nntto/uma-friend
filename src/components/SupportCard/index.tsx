@@ -1,4 +1,3 @@
-import { Post } from "datas";
 import { imageSource } from "datas/imageSource";
 import { Support } from "datas/support";
 import { ImDiamonds } from "react-icons/im";
