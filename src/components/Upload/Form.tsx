@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { moms, Post } from "datas";
 import { upload } from "functions";
+import { Button } from "@material-ui/core";
 import SelectFactors from "./Form/SelectFactors";
 import SelectWithImg from "./Form/SelectWithImg";
 import InputText from "./Form/InputText";
@@ -28,9 +29,6 @@ export default () => {
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
-      <button type="button" onClick={() => console.log(watch(), isValid)}>
-        button
-      </button>
       <p>プロフィール</p>
       <InputText
         control={control}
@@ -92,7 +90,10 @@ export default () => {
       ) : (
         <Alert message="入力を確認してください" />
       )}
-      <input type="submit" />
+      <Button variant="outlined">
+        アップロード
+        <input type="submit" className={classes.inputButtonHide} />
+      </Button>
     </form>
   );
 };

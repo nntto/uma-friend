@@ -13,4 +13,9 @@ export default makeStyles({
   alert: {
     margin: "5px auto",
   },
+  inputButtonHide: {
+    opacity: "0",
+    appearance: "none",
+    position: "absolute",
+  },
 });
