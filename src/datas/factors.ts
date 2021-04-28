@@ -11,7 +11,7 @@ export type Factor = {
   name: string;
   type: FactorTypes;
   desc: string;
-  star?: 0 | 1 | 2 | 3;
+  star?: 1 | 2 | 3;
   checked?: boolean;
 };
 export type Factors = {

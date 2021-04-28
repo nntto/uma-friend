@@ -10,7 +10,7 @@ export default ({ posts }: { posts: Post[] }) => {
   return (
     <>
       <Grid container spacing={3}>
-        {octuplePosts.map((item) => (
+        {posts.map((item) => (
           <Grid item key={item.trainerId} xs={12} md={6} lg={4}>
             <PostTile key={item.trainerId} post={item} />
           </Grid>

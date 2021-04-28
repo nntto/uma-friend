@@ -7,20 +7,22 @@ import {
   TextField,
 } from "@material-ui/core";
 import { Moms, Support, Umamusume } from "datas";
-import { Autocomplete } from "@material-ui/lab";
+import { Alert, Autocomplete } from "@material-ui/lab";
 import { useSelector } from "react-redux";
 import { Db } from "features";
 import MenuItemWithImg from "components/atom/MenuItemWithImg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default ({
   control,
   momId,
   type,
+  rules,
 }: {
   control: Control<FieldValues>;
   momId?: Moms;
   type: "umamusume" | "support";
+  rules?: any;
 }) => {
   const db = [] as Umamusume[] | Support[];
   let options: Umamusume[] | Support[];
@@ -75,32 +77,36 @@ export default ({
       <Controller
         control={control}
         name={name}
-        render={({ field: { onChange } }) => (
-          <Autocomplete
-            id={id}
-            options={options.filter(
-              (i: Support) => i.rarity === rarity || i.rarity === undefined
-            )}
-            autoComplete
-            onChange={(e, values) => onChange(values, type)}
-            autoHighlight
-            renderOption={(option) => (
-              <MenuItemWithImg collection={collection} item={option} />
-            )}
-            getOptionLabel={(option) => option.name}
-            renderInput={(params) => (
-              <>
-                <TextField
-                  {...params}
-                  label={label}
-                  variant="outlined"
-                  inputProps={{
-                    ...params.inputProps,
-                  }}
-                />
-              </>
-            )}
-          />
+        rules={rules}
+        render={({ field: { onChange }, fieldState: { error } }) => (
+          <>
+            {error && <Alert severity="error">{error.message}</Alert>}
+            <Autocomplete
+              id={id}
+              options={options.filter(
+                (i: Support) => i.rarity === rarity || i.rarity === undefined
+              )}
+              autoComplete
+              onChange={(e, values) => onChange(values, type)}
+              autoHighlight
+              renderOption={(option) => (
+                <MenuItemWithImg collection={collection} item={option} />
+              )}
+              getOptionLabel={(option) => option.name}
+              renderInput={(params) => (
+                <>
+                  <TextField
+                    {...params}
+                    label={label}
+                    variant="outlined"
+                    inputProps={{
+                      ...params.inputProps,
+                    }}
+                  />
+                </>
+              )}
+            />
+          </>
         )}
       />
     </>

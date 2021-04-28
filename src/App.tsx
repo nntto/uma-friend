@@ -14,7 +14,6 @@ import {
   factors,
   supports,
   umamusumes,
-  posts,
 } from "datas";
 import PostTiles from "components/PostTiles";
 import Upload from "components/Upload";
@@ -33,7 +32,7 @@ const App: React.FC = () => {
   // const [factors, setFactors] = useState<Factor[]>([]);
   // const [umamusumes, setUmamusumes] = useState<Umamusume[]>([]);
   // const [supports, setSupports] = useState<Support[]>([]);
-  // const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<Post[]>([]);
 
   const dispatch = useDispatch();
   const { setDbData } = dbSlice.actions;
@@ -64,7 +63,7 @@ const App: React.FC = () => {
     // fetchDbData("factors", setFactors);
     // fetchDbData("umamusumes", setUmamusumes);
     // fetchDbData("supportCards", setSupports);
-    // fetchDbData("posts", setPosts);
+    fetchDbData("posts", setPosts);
   }, []);
   return (
     <>
