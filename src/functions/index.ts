@@ -24,7 +24,7 @@ export const fetchDbData = (
       if (collection === "posts") {
         newState.push({
           ...doc.data(),
-          updatedAt: doc.data().nanoseconds,
+          updatedAt: doc.data().updatedAt.toDate().toLocaleString(),
         });
       } else {
         newState.push(doc.data());

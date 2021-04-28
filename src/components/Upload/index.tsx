@@ -2,10 +2,8 @@ import Popover from "@material-ui/core/Popover";
 import Button from "@material-ui/core/Button";
 import React from "react";
 import UploadForm from "./Form";
-import useStyle from "./style";
 
 export default () => {
-  const classes = useStyle();
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null
   );
@@ -41,7 +39,7 @@ export default () => {
         }}
       >
         <div>
-          <UploadForm />
+          <UploadForm handleClose={handleClose} />
         </div>
       </Popover>
     </>

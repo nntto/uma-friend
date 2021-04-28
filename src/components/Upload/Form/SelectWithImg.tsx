@@ -35,7 +35,7 @@ export default ({
     db.push(...useSelector<Db, Umamusume[]>((state) => state.umamusumes));
     options = db;
     collection = "umamusumes";
-    label = "育成ウマ娘";
+    label = "ウマ娘";
     name = `${momId}.${type}`;
     id = `select-${name}`;
   } else if (type === "support") {
