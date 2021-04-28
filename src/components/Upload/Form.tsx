@@ -1,25 +1,25 @@
 import { useForm } from "react-hook-form";
-import { moms } from "datas";
-import { useEffect } from "react";
-import { createTypeAliasDeclaration } from "typescript";
+import { moms, Post } from "datas";
+import { upload } from "functions";
 import SelectFactors from "./Form/SelectFactors";
 import SelectWithImg from "./Form/SelectWithImg";
 import InputText from "./Form/InputText";
 import SelectValue from "./Form/SelectValue";
 import useStyles from "./style";
 import * as validation from "./validation";
+import Alert from "./Form/Alert";
 
 export default () => {
   const {
     handleSubmit,
-    formState: { errors },
-    register,
+    formState: { errors, isValid },
     control,
     watch,
-  } = useForm();
+  } = useForm<Post>();
   const classes = useStyles();
-  const onSubmit = (data: unknown) => {
-    console.log(data, errors);
+  const onSubmit = (data: Post) => {
+    console.log(data, errors, isValid);
+    upload(data);
   };
   const headlines = {
     mom: "代表ウマ娘",
@@ -28,9 +28,10 @@ export default () => {
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
-      <button onClick={() => console.log(errors)} type="button">
+      <button type="button" onClick={() => console.log(watch(), isValid)}>
         button
       </button>
+      <p>プロフィール</p>
       <InputText
         control={control}
         name="name"
@@ -69,7 +70,6 @@ export default () => {
         type="support"
         rules={validation.support}
       />
-
       {moms.map((momId) => (
         <>
           <p>{headlines[momId]}</p>
@@ -87,6 +87,11 @@ export default () => {
           />
         </>
       ))}
+      {isValid ? (
+        <Alert message="OK" severity="success" />
+      ) : (
+        <Alert message="入力を確認してください" />
+      )}
       <input type="submit" />
     </form>
   );

@@ -1,5 +1,6 @@
-import { Control, Controller, FieldValues } from "react-hook-form";
+import { Control, Controller } from "react-hook-form";
 import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
+import { Post } from "datas";
 
 export default ({
   control,
@@ -11,7 +12,7 @@ export default ({
   afterText,
   defaultValue,
 }: {
-  control: Control<FieldValues>;
+  control: Control<Post>;
   name: string;
   id: string;
   label: string;
@@ -23,7 +24,8 @@ export default ({
   return (
     <Controller
       control={control}
-      name={name}
+      name={name as any}
+      defaultValue={defaultValue}
       render={({ field: { onChange, value } }) => (
         <FormControl>
           <InputLabel shrink id={id}>
@@ -33,7 +35,6 @@ export default ({
             labelId={id}
             id={id}
             label={label}
-            defaultValue={defaultValue}
             value={value}
             variant="outlined"
             onChange={onChange}

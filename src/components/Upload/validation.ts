@@ -7,7 +7,11 @@ export const name = {
 
 export const trainerId = {
   required: { value: true, message: "トレーナーIDは必ず入力してください。" },
-  minLength: { value: 9, message: "トレーナーIDは9文字です" },
+  pattern: {
+    value: /^[0-9]+$/,
+    message: "数字以外の文字を入力しないでください。",
+  },
+  minLength: { value: 9, message: "トレーナーIDは9文字です。" },
   maxLength: {
     value: 9,
     message: "トレーナーIDは9文字です",

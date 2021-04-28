@@ -1,4 +1,4 @@
-import { Control, Controller, FieldValues } from "react-hook-form";
+import { Control, Controller } from "react-hook-form";
 import {
   FormControl,
   InputLabel,
@@ -6,12 +6,13 @@ import {
   Select,
   TextField,
 } from "@material-ui/core";
-import { Moms, Support, Umamusume } from "datas";
-import { Alert, Autocomplete } from "@material-ui/lab";
+import { Moms, Post, Support, Umamusume } from "datas";
+import { Autocomplete } from "@material-ui/lab";
 import { useSelector } from "react-redux";
 import { Db } from "features";
 import MenuItemWithImg from "components/atom/MenuItemWithImg";
 import { useState } from "react";
+import Alert from "./Alert";
 
 export default ({
   control,
@@ -19,7 +20,7 @@ export default ({
   type,
   rules,
 }: {
-  control: Control<FieldValues>;
+  control: Control<Post>;
   momId?: Moms;
   type: "umamusume" | "support";
   rules?: any;
@@ -28,7 +29,7 @@ export default ({
   let options: Umamusume[] | Support[];
   let collection: "umamusumes" | "supportCards";
   let label: string;
-  let name: string;
+  let name: any;
   let id: string;
   if (type === "umamusume") {
     db.push(...useSelector<Db, Umamusume[]>((state) => state.umamusumes));
@@ -80,7 +81,7 @@ export default ({
         rules={rules}
         render={({ field: { onChange }, fieldState: { error } }) => (
           <>
-            {error && <Alert severity="error">{error.message}</Alert>}
+            {error && <Alert message={error.message} />}
             <Autocomplete
               id={id}
               options={options.filter(

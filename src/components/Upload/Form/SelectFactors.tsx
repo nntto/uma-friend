@@ -1,9 +1,4 @@
-import {
-  Control,
-  Controller,
-  FieldValues,
-  UseFormWatch,
-} from "react-hook-form";
+import { Control, Controller, UseFormWatch } from "react-hook-form";
 import {
   FormControl,
   InputLabel,
@@ -11,12 +6,13 @@ import {
   Select,
   TextField,
 } from "@material-ui/core";
-import { Factor, factorDatas, FactorTypes, Moms } from "datas";
-import { Alert, Autocomplete } from "@material-ui/lab";
+import { Factor, factorDatas, FactorTypes, Moms, Post } from "datas";
+import { Autocomplete } from "@material-ui/lab";
 import { useSelector } from "react-redux";
 import { Db } from "features";
 import produce from "immer";
 import useStyle from "../style";
+import Alert from "./Alert";
 
 export default ({
   control,
@@ -24,12 +20,16 @@ export default ({
   watch,
   rules,
 }: {
-  control: Control<FieldValues>;
+  control: Control<Post>;
   momId: Moms;
-  watch: UseFormWatch<FieldValues>;
+  watch: UseFormWatch<Post>;
   rules?: any;
 }) => {
-  const dbFactors = useSelector<Db, Factor[]>((state) => state.factors);
+  const dbFactors = useSelector<Db, Factor[]>((state) => state.factors).map(
+    (i) => {
+      return { ...i, star: 1 };
+    }
+  );
   const classes = useStyle();
   return (
     <>
@@ -39,7 +39,7 @@ export default ({
         const isRequired =
           factorType === "status" || factorType === "appropriate";
         const typedFactors = [] as Factor[];
-        const factors = watch(`${momId}.factors.${factorType}`);
+        const factors = watch(`${momId}.factors.${factorType}` as any);
         if (isMulti && factors) {
           typedFactors.push(
             ...((factors.filter((i: any) => i !== undefined) as Factor[]) ?? [])
@@ -51,15 +51,12 @@ export default ({
           <div>
             <Controller
               control={control}
-              name={`${momId}.factors.${factorType}`}
+              name={`${momId}.factors.${factorType}` as any}
               rules={isRequired && rules}
               render={({ field: { onChange }, fieldState: { error } }) => (
                 <>
                   {error && (
-                    <Alert severity="error">
-                      {factorDatas[factorType]}
-                      {error.message}
-                    </Alert>
+                    <Alert message={factorDatas[factorType] + error.message} />
                   )}
                   <Autocomplete
                     multiple={isMulti}

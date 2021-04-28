@@ -64,6 +64,7 @@ const App: React.FC = () => {
     // fetchDbData("umamusumes", setUmamusumes);
     // fetchDbData("supportCards", setSupports);
     fetchDbData("posts", setPosts);
+    console.log("download");
   }, []);
   return (
     <>

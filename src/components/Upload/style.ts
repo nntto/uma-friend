@@ -10,4 +10,7 @@ export default makeStyles({
   selectStar: {
     minWidth: "100px",
   },
+  alert: {
+    margin: "5px auto",
+  },
 });

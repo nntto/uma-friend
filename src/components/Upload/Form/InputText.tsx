@@ -1,7 +1,7 @@
-import { Control, Controller, FieldValues } from "react-hook-form";
+import { Control, Controller } from "react-hook-form";
 import { TextField } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
-import useStyles from "../style";
+import { Post } from "datas";
+import Alert from "./Alert";
 
 export default ({
   control,
@@ -11,26 +11,27 @@ export default ({
   defaultValue,
   rules,
 }: {
-  control: Control<FieldValues>;
-  name: string;
+  control: Control<Post>;
+  name: "name" | "trainerId";
   id: string;
   label: string;
   defaultValue?: string;
   rules?: any;
 }) => {
-  const classes = useStyles();
   return (
     <Controller
       control={control}
       name={name}
       rules={rules}
-      render={({ field: { onChange }, fieldState: { error } }) => {
+      defaultValue={defaultValue}
+      render={({ field: { onChange, value }, fieldState: { error } }) => {
         return (
           <div>
-            {error && <Alert severity="error">{error.message}</Alert>}
+            {error && <Alert message={error.message} />}
             <TextField
+              fullWidth
               id={id}
-              defaultValue={defaultValue}
+              value={value}
               variant="outlined"
               onChange={onChange}
               label={label}
